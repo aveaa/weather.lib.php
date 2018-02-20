@@ -29,9 +29,7 @@ function getRandomInt(min, max) {
 
 
 let interval = setInterval (function () {
-	const embed = new Discord.RichEmbed()
-	.setFooter('JonedVoice');
-	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
+	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(message.embeds[0].title);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
 }, 10000); 
 
 
@@ -137,7 +135,7 @@ client.on("messageUpdate", (old_message, new_message) => {
 // client.on("messageBulkDelete")
 
 client.on("guildMemberAdd", member => {
-	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${message.guild.members.filter(m => m.presence.status === 'online').lenght}\``)});
+client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(member.user.tag);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
   const embed = new Discord.RichEmbed()
   .setTitle('Добро пожаловать')
   .setColor("#ee83ac")
