@@ -1,7 +1,7 @@
 {
-  "name": "Stalin",
+  "name": "JVBot",
   "description": "discord.bot",
-  "version": "0.0.1",
+  "version": "0.5 ALPHA",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
