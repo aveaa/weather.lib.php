@@ -169,7 +169,7 @@ client.on("message", message => {
     message.delete().catch(O_o=>{}); 
     message.channel.send(sayMessage).catch(O_o=>{message.reply('ты ебобо?');});
   	} else if (command == "upd") {
-	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${objDump(message.guild.members.filter(m => m.presence.status === 'online'))}\``)});
+	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${objDump(message.guild.members)}\``)});
   	} else if (command === "очистить" || command == "clear" || command == "del") {
   		if(!message.member.roles.some(r=>[rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
