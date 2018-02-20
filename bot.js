@@ -29,7 +29,9 @@ function getRandomInt(min, max) {
 
 
 let interval = setInterval (function () {
-client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``)});
+	const embed = new Discord.RichEmbed()
+	.setFooter('JonedVoice');
+	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
 }, 10000); 
 
 
