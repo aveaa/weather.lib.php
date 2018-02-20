@@ -205,6 +205,8 @@ client.on("message", message => {
 		.setColor(parseInt(getRandomInt(0,16777214)));
 		message.channel.send({embed});
 		message.delete();
+	} else if (command == "upd") {
+		message.guild.channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${message.guild.memnerCount}\``)})
 	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
 		var cmds = '';
 		if (creators.includes(message.author.id)) {
