@@ -187,7 +187,7 @@ client.on("message", message => {
 			  	},
 			}});
 		}
-	} else if (command === "аватарка" || command === "avatar") {
+	} else if (command === "аватарка" || command === "avatar" || command == "av") {
 		let member = message.mentions.members.first();
 		if (!member) 
 		return message.author.send({embed: {
