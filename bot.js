@@ -233,7 +233,9 @@ client.on("message", message => {
 		}});
 		const embed = new Discord.RichEmbed()
 		.setColor(member.displayColor)
-		.setDescription(`Присоединился ${member.joinedAt.getDate()}.${member.joinedAt.getMonth()}.${member.joinedAt.getFullYear()}`);
+		.setDescription(`Присоединился ${member.joinedAt.getDate()}.${member.joinedAt.getMonth()}.${member.joinedAt.getFullYear()}`)
+		.setThumbnail(member.user.avatarURL)
+		.setTitle(member.user.tag, member.user.avatarURL);
 		message.channel.send({embed});
 	} else if (command == "remote_say") {
 		if(!message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
