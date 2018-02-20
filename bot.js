@@ -64,6 +64,7 @@ client.on("messageDelete", message => {
 client.on('ready', () => {
 	console.log('Bot loaded');
 	client.user.setPresence({ game: { name: `${process.env.PREFIX}помощь`, type: 0 } });
+	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${message.guild.members.filter(m => m.presence.status === 'online').count}\``)});
 })
 
 
@@ -130,6 +131,7 @@ client.on("messageUpdate", (old_message, new_message) => {
 // client.on("messageBulkDelete")
 
 client.on("guildMemberAdd", member => {
+  member.guild.channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${message.guild.memberCount}\``)});
   const embed = new Discord.RichEmbed()
   .setTitle('Добро пожаловать')
   .setColor("#ee83ac")
@@ -166,6 +168,8 @@ client.on("message", message => {
     const sayMessage = args.join(" ");
     message.delete().catch(O_o=>{}); 
     message.channel.send(sayMessage).catch(O_o=>{message.reply('ты ебобо?');});
+  	} else if (command == "upd") {
+  		client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${message.guild.members.filter(m => m.presence.status === 'online').count}\``)});
   	} else if (command === "очистить" || command == "clear" || command == "del") {
   		if(!message.member.roles.some(r=>[rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
@@ -205,8 +209,6 @@ client.on("message", message => {
 		.setColor(parseInt(getRandomInt(0,16777214)));
 		message.channel.send({embed});
 		message.delete();
-	} else if (command == "upd") {
-		message.guild.channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${message.guild.memberCount}\``)})
 	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
 		var cmds = '';
 		if (creators.includes(message.author.id)) {
