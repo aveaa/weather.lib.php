@@ -28,6 +28,11 @@ function getRandomInt(min, max) {
 }
 
 
+let interval = setInterval (function () {
+client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``)});
+}, 10000); 
+
+
 client.on("messageDelete", message => {
 	if (message.channel.name == undefined) return;
 	if (log_channels.includes(message.channel.id)) return;
@@ -64,7 +69,6 @@ client.on("messageDelete", message => {
 client.on('ready', () => {
 	console.log('Bot loaded');
 	client.user.setPresence({ game: { name: `${process.env.PREFIX}помощь`, type: 0 } });
-	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${message.guild.members.filter(m => m.presence.status === 'online').lenght}\``)});
 })
 
 
@@ -168,8 +172,6 @@ client.on("message", message => {
     const sayMessage = args.join(" ");
     message.delete().catch(O_o=>{}); 
     message.channel.send(sayMessage).catch(O_o=>{message.reply('ты ебобо?');});
-  	} else if (command == "upd") {
-	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {message.edit(`Кол-во участников на сервере: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\``)});
   	} else if (command === "очистить" || command == "clear" || command == "del") {
   		if(!message.member.roles.some(r=>[rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
