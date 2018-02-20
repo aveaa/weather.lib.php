@@ -226,6 +226,8 @@ client.on("message", message => {
 		.setColor(parseInt(getRandomInt(0,16777214)))
 		.setDescription(cmds);
 		message.channel.send({embed});
+	} else if (command == "greet") {
+		client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(args[0]);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
 	} else if (command === "юзеринфо" || command === "userinfo") {
 		let member = message.mentions.members.first();
 		if (!member) 
