@@ -28,9 +28,9 @@ function getRandomInt(min, max) {
 }
 
 
-let interval = setInterval (function () {
-	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(message.embeds[0].title);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
-}, 10000); 
+// let interval = setInterval (function () {
+// 	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(message.embeds[0].title);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
+// }, 10000); 
 
 
 client.on("messageDelete", message => {
@@ -212,20 +212,35 @@ client.on("message", message => {
 		message.channel.send({embed});
 		message.delete();
 	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
-		var cmds = '';
-		if (creators.includes(message.author.id)) {
-			cmds = cmds + `\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.\n`;
-		}
-		if(message.member.roles.some(r=>[rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) || creators.includes(message.author.id)) {
-			cmds = cmds + `\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.\n`;
-		}
-		cmds = cmds + `\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.\n`;
+		var description = `Здравствуй, ${message.member.user.tag}. Тут отображены только те команды, которые доступны вам.\n`;
+		var limit = 5
+		let cmds = [];
+
+		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
+			cmds.push(`\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.`);
+
+		if(message.member.roles.some(r=>[rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) || creators.includes(message.author.id))
+			cmds.push(`\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.`);
+
+		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
+		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.\n`);
+		if (parseInt(args[0]) > math.ceil(cmds.length/5)) return message.reply('Ошибка');
+		var page = parseInt(args[0]);
+		if (args[0] == '') page = 1;
+		// var cmds_list = 
 		const embed = new Discord.RichEmbed()
 		.setTitle(`Помощь`)
 		.setFooter("JonedVoice")
 		.setColor(parseInt(getRandomInt(0,16777214)))
-		.setDescription(cmds);
+		.setDescription(cmds.join('\n'));
 		message.channel.send({embed});
+	} else if (command=='roles' || command == 'роли') {
+		const embed = new Discord.RichEmbed()
+		.setTitle('Роли выдают::arrow_forward:️St.Admin:sparkles::christmas_tree: :arrow_forward:️Admin:sparkles: :arrow_forward:️St.Moder:christmas_tree:')
+		.setColor('#00ff00')
+		.setDescription('Что-бы получить роли :arrow_forward:️Youtubers | :arrow_forward:️Streamer:snowflake:, у вас должно быть 500 подписчиков на YouTube, либо у вас должно быть хотябы 4 стрима на Twitch\n\n #Nether:fire: - 1 Уровень\n #Demon:skull: - 5 Уровень\n :knife:(Кинжал) - 5 Уровень + Доступ к    Демонической Цитадели.\n #Archdemon:imp: - 10 Уровень\n #Lucifer:stars: - 15 Уровень\n #Devillish:japanese_ogre: - 20 Уровень\n\n   НА ЭТОМ МИР ПАДШИХ И ДЬЯВОЛОВ ЗАКАНЧИВАЕТСЯ...\n  #Soul:ghost: - 25 Уровень\n  :key:(Ключ) - 25 Уровень + Доступ в Мир.\n\n   ДАЛЬШЕ ИДУТ ГЛУБОКИЕ, БЕЛЫЕ НЕБЕСА...\n  #Heavenly:star2: - 30 Уровень\n  :crystal_ball: (Хрустальный Шар) - 30 Уровень +    Доступ в Небесный Центурион...\n  #Angel:angel: - 35 Уровень\n  #Archangel:four_leaf_clover: - 40 Уровень\n  #Divine:fleur_de_lis:️ - 45 Уровень + Доступ ко всем комнатам.');
+		message.reply({embed});
+		message.delete();
 	} else if (command == "greet") {
 		client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(args.join(" "));embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
 	} else if (command === "юзеринфо" || command === "userinfo") {
