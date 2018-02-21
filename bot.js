@@ -227,7 +227,7 @@ client.on("message", message => {
 		if (parseInt(args[0]) > Math.ceil(cmds.length/5) || parseInt(args[0]) < 1 || args.length == 0) page = 1;
 		var cmds_list = cmds.slice(1+((page-1)*5), 6+((page-1)*5));
 		const embed = new Discord.RichEmbed()
-		.setTitle(`Помощь пользователя ${message.author}`)
+		.setTitle(`Помощь пользователя ${message.author.tag}`)
 		.setFooter(`Страница ${page}/${Math.ceil(cmds.length/5)}`)
 		.setColor(parseInt(getRandomInt(0,16777214)))
 		.setDescription(cmds_list.join('\n'));
