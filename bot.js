@@ -212,7 +212,6 @@ client.on("message", message => {
 		message.channel.send({embed});
 		message.delete();
 	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
-<<<<<<< HEAD
 		var cmds = '';
 		if (creators.includes(message.author.id)) {
 			cmds = cmds + `\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.\n`;
@@ -221,7 +220,6 @@ client.on("message", message => {
 			cmds = cmds + `\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.\n`;
 		}
 		cmds = cmds + `\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.\n`;
-=======
 		var limit = 5
 		let cmds = [''];
 		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
@@ -238,7 +236,6 @@ client.on("message", message => {
 		if (parseInt(args[0]) > all_pages || parseInt(args[0]) < 1 || args.length == 0) page = 1;
 		var cmds_list = cmds.slice(1+((page-1)*5), 6+((page-1)*5));
 		if (all_pages > page) cmds_list.push(`Для просмотра следующей страницы напишите \`${process.env.PREFIX}${command} ${page+1}\``)
->>>>>>> branch 'master' of https://github.com/zziger/weather.lib.php
 		const embed = new Discord.RichEmbed()
 		.setTitle(`Помощь пользователя ${message.author.tag}`)
 		.setFooter(`Страница ${page}/${all_pages}`)
