@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const rule = {st_admin: "371003132983115777", ml_admin: "371003796454899712", st_moder: "394505884266528788", ml_moder: "371003753781788684", creator: "406442606273363990"};
 const creators = ['207821802431315968', '168255014282854401'];
-const log_channels = ['414479694453407744', '414506590889312280'];
+const log_channels = ['414479694453407744', '414506590889312280', '415524508091416576'];
 const black_list = [''];
 
 
@@ -28,9 +28,9 @@ function getRandomInt(min, max) {
 }
 
 
-let interval = setInterval (function () {
-	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(message.embeds[0].title);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
-}, 10000); 
+// let interval = setInterval (function () {
+// 	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(message.embeds[0].title);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
+// }, 10000); 
 
 
 client.on("messageDelete", message => {
@@ -135,7 +135,7 @@ client.on("messageUpdate", (old_message, new_message) => {
 // client.on("messageBulkDelete")
 
 client.on("guildMemberAdd", member => {
-client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(member.user.tag);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
+// client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(member.user.tag);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
   const embed = new Discord.RichEmbed()
   .setTitle('Добро пожаловать')
   .setColor("#ee83ac")
@@ -212,6 +212,7 @@ client.on("message", message => {
 		message.channel.send({embed});
 		message.delete();
 	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
+<<<<<<< HEAD
 		var cmds = '';
 		if (creators.includes(message.author.id)) {
 			cmds = cmds + `\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.\n`;
@@ -220,12 +221,39 @@ client.on("message", message => {
 			cmds = cmds + `\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.\n`;
 		}
 		cmds = cmds + `\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.\n`;
+=======
+		var limit = 5
+		let cmds = [''];
+		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
+			cmds.push(`\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.`);
+
+		if(message.member.roles.some(r=>[rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) || creators.includes(message.author.id))
+			cmds.push(`\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.`);
+
+		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
+		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
+		var all_pages = Math.ceil(cmds.length/5);
+
+		var page = parseInt(args[0]);
+		if (parseInt(args[0]) > all_pages || parseInt(args[0]) < 1 || args.length == 0) page = 1;
+		var cmds_list = cmds.slice(1+((page-1)*5), 6+((page-1)*5));
+		if (all_pages > page) cmds_list.push(`Для просмотра следующей страницы напишите \`${process.env.PREFIX}${command} ${page+1}\``)
+>>>>>>> branch 'master' of https://github.com/zziger/weather.lib.php
 		const embed = new Discord.RichEmbed()
-		.setTitle(`Помощь`)
-		.setFooter("JonedVoice")
+		.setTitle(`Помощь пользователя ${message.author.tag}`)
+		.setFooter(`Страница ${page}/${all_pages}`)
 		.setColor(parseInt(getRandomInt(0,16777214)))
-		.setDescription(cmds);
+		.setDescription(cmds_list.join('\n'));
 		message.channel.send({embed});
+		message.delete();
+
+	} else if (command=='roles' || command == 'роли') {
+		const embed = new Discord.RichEmbed()
+		.setTitle('Роли выдают::arrow_forward:️St.Admin:sparkles::christmas_tree: :arrow_forward:️Admin:sparkles: :arrow_forward:️St.Moder:christmas_tree:')
+		.setColor('#00ff00')
+		.setDescription('Что-бы получить роли :arrow_forward:️Youtubers | :arrow_forward:️Streamer:snowflake:, у вас должно быть 500 подписчиков на YouTube, либо у вас должно быть хотябы 4 стрима на Twitch\n\n #Nether:fire: - 1 Уровень\n #Demon:skull: - 5 Уровень\n :knife:(Кинжал) - 5 Уровень + Доступ к    Демонической Цитадели.\n #Archdemon:imp: - 10 Уровень\n #Lucifer:stars: - 15 Уровень\n #Devillish:japanese_ogre: - 20 Уровень\n\n   НА ЭТОМ МИР ПАДШИХ И ДЬЯВОЛОВ ЗАКАНЧИВАЕТСЯ...\n  #Soul:ghost: - 25 Уровень\n  :key:(Ключ) - 25 Уровень + Доступ в Мир.\n\n   ДАЛЬШЕ ИДУТ ГЛУБОКИЕ, БЕЛЫЕ НЕБЕСА...\n  #Heavenly:star2: - 30 Уровень\n  :crystal_ball: (Хрустальный Шар) - 30 Уровень +    Доступ в Небесный Центурион...\n  #Angel:angel: - 35 Уровень\n  #Archangel:four_leaf_clover: - 40 Уровень\n  #Divine:fleur_de_lis:️ - 45 Уровень + Доступ ко всем комнатам.');
+		message.reply({embed});
+		message.delete();
 	} else if (command == "greet") {
 		client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(args.join(" "));embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
 	} else if (command === "юзеринфо" || command === "userinfo") {
