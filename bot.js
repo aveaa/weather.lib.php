@@ -214,6 +214,7 @@ client.on("message", message => {
 	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
 		var limit = 5
 		let cmds = [''];
+		var all_pages = Math.ceil(cmds.length/5);
 
 		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
 			cmds.push(`\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.`);
@@ -224,11 +225,12 @@ client.on("message", message => {
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
 		var page = parseInt(args[0]);
-		if (parseInt(args[0]) > Math.ceil(cmds.length/5) || parseInt(args[0]) < 1 || args.length == 0) page = 1;
+		if (parseInt(args[0]) > all_pages || parseInt(args[0]) < 1 || args.length == 0) page = 1;
 		var cmds_list = cmds.slice(1+((page-1)*5), 6+((page-1)*5));
+		if (all_pages > page) cmds_list.push(`Для просмотра следующей страницы напишите \`${process.env.prefix}${command} ${page+1}\``)
 		const embed = new Discord.RichEmbed()
 		.setTitle(`Помощь пользователя ${message.author.tag}`)
-		.setFooter(`Страница ${page}/${Math.ceil(cmds.length/5)}`)
+		.setFooter(`Страница ${page}/${all_pages}`)
 		.setColor(parseInt(getRandomInt(0,16777214)))
 		.setDescription(cmds_list.join('\n'));
 		message.channel.send({embed});
