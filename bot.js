@@ -68,7 +68,7 @@ client.on("messageDelete", message => {
 
 client.on('ready', () => {
 	console.log('Bot loaded');
-	client.user.setPresence({ game: { name: `${process.env.PREFIX}помощь`, type: 0 } });
+	client.user.setPresence({ game: { name: `на тебя О_о`, type: 3 } });
 })
 
 
