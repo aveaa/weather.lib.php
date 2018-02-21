@@ -224,7 +224,7 @@ client.on("message", message => {
 
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.\n`);
-		if (parseInt(args[0]) > math.ceil(cmds.length/5)) return message.reply('Ошибка');
+		if (parseInt(args[0]) > Math.ceil(cmds.length/5)) return message.reply('Ошибка');
 		var page = parseInt(args[0]);
 		if (args[0] == '') page = 1;
 		// var cmds_list = 
