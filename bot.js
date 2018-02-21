@@ -223,13 +223,9 @@ client.on("message", message => {
 
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
-		cmds.push(`\`${process.env.PREFIX}test1\` - информация о ролях.`);
-		cmds.push(`\`${process.env.PREFIX}test2\` - информация о ролях.`);
-		cmds.push(`\`${process.env.PREFIX}test3\` - информация о ролях.`);
-		cmds.push(`\`${process.env.PREFIX}test4\` - информация о ролях.`);
 		var page = parseInt(args[0]);
 		if (parseInt(args[0]) > Math.ceil(cmds.length/5) || parseInt(args[0]) < 1 || args.length == 0) page = 1;
-		var cmds_list = cmds.slice(1+((page-1)*5), 5+((page-1)*5));
+		var cmds_list = cmds.slice(1+((page-1)*5), 6+((page-1)*5));
 		const embed = new Discord.RichEmbed()
 		.setTitle(`Помощь пользователя ${message.author.tag}`)
 		.setFooter(`Страница ${page}/${Math.ceil(cmds.length/5)}`)
