@@ -214,8 +214,6 @@ client.on("message", message => {
 	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
 		var limit = 5
 		let cmds = [''];
-		var all_pages = Math.ceil(cmds.length/5);
-
 		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
 			cmds.push(`\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.`);
 
@@ -227,6 +225,8 @@ client.on("message", message => {
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
+		var all_pages = Math.ceil(cmds.length/5);
+
 		var page = parseInt(args[0]);
 		if (parseInt(args[0]) > all_pages || parseInt(args[0]) < 1 || args.length == 0) page = 1;
 		var cmds_list = cmds.slice(1+((page-1)*5), 6+((page-1)*5));
