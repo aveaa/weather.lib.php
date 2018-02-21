@@ -212,9 +212,8 @@ client.on("message", message => {
 		message.channel.send({embed});
 		message.delete();
 	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
-		var description = `Здравствуй, ${message.member.user.tag}. Тут отображены только те команды, которые доступны вам.\n`;
 		var limit = 5
-		let cmds = ['',];
+		let cmds = [''];
 
 		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
 			cmds.push(`\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.`);
@@ -223,20 +222,21 @@ client.on("message", message => {
 			cmds.push(`\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.`);
 
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
-		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.\n`);
-		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.\n`);
-		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.\n`);
-		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.\n`);
-		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.\n`);
+		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
+		cmds.push(`\`${process.env.PREFIX}test1\` - информация о ролях.`);
+		cmds.push(`\`${process.env.PREFIX}test2\` - информация о ролях.`);
+		cmds.push(`\`${process.env.PREFIX}test3\` - информация о ролях.`);
+		cmds.push(`\`${process.env.PREFIX}test4\` - информация о ролях.`);
 		var page = parseInt(args[0]);
 		if (parseInt(args[0]) > Math.ceil(cmds.length/5) || parseInt(args[0]) < 1 || args.length == 0) page = 1;
-		var cmds_list = cmds.slice(1*page, 5*page);
+		var cmds_list = cmds.slice(1+((page-1)*5), 5+((page-1)*5));
 		const embed = new Discord.RichEmbed()
-		.setTitle(`Помощь`)
+		.setTitle(`Помощь пользователя ${message.author.tag}`)
 		.setFooter(`Страница ${page}/${Math.ceil(cmds.length/5)}`)
 		.setColor(parseInt(getRandomInt(0,16777214)))
 		.setDescription(cmds_list.join('\n'));
-		message.channel.send({embed});
+		message.reply({embed});
+		message.delete();
 
 	} else if (command=='roles' || command == 'роли') {
 		const embed = new Discord.RichEmbed()
