@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const rule = {st_admin: "371003132983115777", ml_admin: "371003796454899712", st_moder: "394505884266528788", ml_moder: "371003753781788684", creator: "406442606273363990"};
 const creators = ['207821802431315968', '168255014282854401'];
-const log_channels = ['414479694453407744', '414506590889312280'];
+const log_channels = ['414479694453407744', '414506590889312280', '415524508091416576'];
 const black_list = [''];
 
 
@@ -135,7 +135,7 @@ client.on("messageUpdate", (old_message, new_message) => {
 // client.on("messageBulkDelete")
 
 client.on("guildMemberAdd", member => {
-client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(member.user.tag);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
+// client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(member.user.tag);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
   const embed = new Discord.RichEmbed()
   .setTitle('Добро пожаловать')
   .setColor("#ee83ac")
@@ -214,7 +214,7 @@ client.on("message", message => {
 	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
 		var description = `Здравствуй, ${message.member.user.tag}. Тут отображены только те команды, которые доступны вам.\n`;
 		var limit = 5
-		let cmds = [];
+		let cmds = ['',];
 
 		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
 			cmds.push(`\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.`);
@@ -227,13 +227,14 @@ client.on("message", message => {
 		if (parseInt(args[0]) > Math.ceil(cmds.length/5)) return message.reply('Ошибка');
 		var page = parseInt(args[0]);
 		if (args[0] == '') page = 1;
-		// var cmds_list = 
+		var cmds_list = cmds.slice(1*page, 5*page);
 		const embed = new Discord.RichEmbed()
 		.setTitle(`Помощь`)
-		.setFooter("JonedVoice")
+		.setFooter(`Страница ${page}/${Math.ceil(cmds.length/5)}`)
 		.setColor(parseInt(getRandomInt(0,16777214)))
-		.setDescription(cmds.join('\n'));
+		.setDescription(cmds_list.join('\n'));
 		message.channel.send({embed});
+
 	} else if (command=='roles' || command == 'роли') {
 		const embed = new Discord.RichEmbed()
 		.setTitle('Роли выдают::arrow_forward:️St.Admin:sparkles::christmas_tree: :arrow_forward:️Admin:sparkles: :arrow_forward:️St.Moder:christmas_tree:')
