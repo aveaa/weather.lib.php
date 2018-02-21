@@ -224,9 +224,8 @@ client.on("message", message => {
 
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.\n`);
-		if (parseInt(args[0]) > Math.ceil(cmds.length/5)) return message.reply('Ошибка');
 		var page = parseInt(args[0]);
-		if (args[0] == '') page = 1;
+		if (parseInt(args[0]) > Math.ceil(cmds.length/5) || parseInt(args[0]) < 1) page = 1;
 		var cmds_list = cmds.slice(1*page, 5*page);
 		const embed = new Discord.RichEmbed()
 		.setTitle(`Помощь`)
