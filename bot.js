@@ -173,7 +173,7 @@ client.on("message", message => {
     message.delete().catch(O_o=>{}); 
     message.channel.send(sayMessage).catch(O_o=>{message.reply('ты ебобо?');});
   	} else if (command === "очистить" || command == "clear" || command == "del") {
-  		if(!message.member.roles.some(r=>[rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
+  		if(!message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
 		let content = message.content.slice(process.env.PREFIX.length + 8);
 		let messagecount = parseInt(args[0])+1;
@@ -216,7 +216,7 @@ client.on("message", message => {
 		if (creators.includes(message.author.id)) {
 			cmds = cmds + `\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.\n`;
 		}
-		if(message.member.roles.some(r=>[rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) || creators.includes(message.author.id)) {
+		if(message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) || creators.includes(message.author.id)) {
 			cmds = cmds + `\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.\n`;
 		}
 		cmds = cmds + `\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.\n`;
