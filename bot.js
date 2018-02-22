@@ -262,19 +262,19 @@ client.on("message", message => {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
-				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+play ${message.channel.id}}`)
+				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+play ${message.channel.id}`)
 			}
 		} else if (new_command == "pause") {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
-				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+pause ${message.channel.id}}`)
+				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+pause ${message.channel.id}`)
 			}
 		} else if (new_command == "skip") {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
-				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+skip ${message.channel.id}}`)
+				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+skip ${message.channel.id}`)
 			}
 		}
 	} else if (command === "юзеринфо" || command === "userinfo") {
