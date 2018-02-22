@@ -254,7 +254,7 @@ client.on("message", message => {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
-				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+add ${message.channel.id} ${new_args.join(' ');}`)
+				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+add ${message.channel.id} ${new_args.join(' ')}`)
 			}
 		}
 	} else if (command === "юзеринфо" || command === "userinfo") {
