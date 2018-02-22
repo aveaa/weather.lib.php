@@ -218,10 +218,10 @@ client.on("message", message => {
 		
 		var limit = 5
 		let cmds = [''];
-		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.ml_moder, rule.st_admin, rule.creator].includes(r.id)))
+		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
 			cmds.push(`\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.`);
 
-		if(message.member.roles.some(r=>[rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) || creators.includes(message.author.id))
+		if(message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) || creators.includes(message.author.id))
 			cmds.push(`\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.`);
 
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
