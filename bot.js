@@ -193,7 +193,7 @@ client.on("message", message => {
 			  	},
 			}});
 		}
-	} else if (command === "аватарка" || command === "avatar" || command == "av") {
+	} else if (command === "аватарка" || command === "avatar" || command == "av" || command === "ав") {
 		let member = message.mentions.members.first();
 		if (!member) 
 		return message.author.send({embed: {
