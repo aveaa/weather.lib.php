@@ -247,6 +247,16 @@ client.on("message", message => {
 		message.delete();
 	} else if (command == "greet") {
 		client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(args.join(" "));embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
+	} else if (command == "music") {
+		let new_args = args;
+		let new_command = args.shift();
+		if (new_command == "add") {
+			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
+				message.channel.send('Эй! Ты не в канале бота!');
+			} else {
+				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+add ${message.channel.id} ${new_args.join(' ');}`)
+			}
+		}
 	} else if (command === "юзеринфо" || command === "userinfo") {
 		let member = message.mentions.members.first();
 		if (!member) 
