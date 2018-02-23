@@ -6,7 +6,6 @@ const log_channels = ['414479694453407744', '414506590889312280', '4155245080914
 const black_list = [''];
 const music_channels = ['', '415577705636167694', '415578104724193300', '415578300505915393', '415578533511823370', '415578661023121408'];
 const jvbot_channel = '415524508091416576';
-let 
 
 
 function declOfNum(number, titles) {  
