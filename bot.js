@@ -1,11 +1,12 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const rule = {st_admin: "371003132983115777", ml_admin: "371003796454899712", st_moder: "394505884266528788", ml_moder: "371003753781788684", creator: "406442606273363990"};
+const rule = {music_dj:"416468571196227584", st_admin: "371003132983115777", ml_admin: "371003796454899712", st_moder: "394505884266528788", ml_moder: "371003753781788684", creator: "406442606273363990"};
 const creators = ['207821802431315968', '168255014282854401'];
 const log_channels = ['414479694453407744', '414506590889312280', '415524508091416576'];
 const black_list = [''];
 const music_channels = ['', '415577705636167694', '415578104724193300', '415578300505915393', '415578533511823370', '415578661023121408'];
 const jvbot_channel = '415524508091416576';
+let 
 
 
 function declOfNum(number, titles) {  
@@ -70,7 +71,7 @@ client.on("messageDelete", message => {
 
 client.on('ready', () => {
 	console.log('Bot loaded');
-	client.user.setPresence({ game: { name: `на тебя О_о`, type: 3 } });
+	client.user.setPresence({ game: { name: `по сторонам`, type: 3 } });
 })
 
 
@@ -178,8 +179,8 @@ client.on("message", message => {
   		if(!message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
 		let content = message.content.slice(process.env.PREFIX.length + 8);
-		let messagecount = parseInt(args[0])+1;
-		let msc = messagecount -1;
+		let messagecount = parseInt(args[0]);
+		let msc = messagecount;
 		if (messagecount > 2) {
 			message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
 		let lol = declOfNum(msc, ['сообщение', 'сообщения', 'сообщений']);
@@ -276,6 +277,8 @@ client.on("message", message => {
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+skip ${message.channel.id}`)
 			}
+		} else if (new_command == "ans" && message.author.bot) {
+
 		}
 	} else if (command === "юзеринфо" || command === "userinfo") {
 		let member = message.mentions.members.first();
