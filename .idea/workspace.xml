@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13d6f049-4c42-4440-b76e-acc2a9dfadcd" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/bot.js" afterPath="$PROJECT_DIR$/bot.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +17,8 @@
       <file leaf-file-name="bot.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="304" column="9" lean-forward="true" selection-start-line="304" selection-start-column="9" selection-end-line="304" selection-end-column="9" />
+            <state relative-caret-position="846">
+              <caret line="302" column="47" lean-forward="true" selection-start-line="302" selection-start-column="47" selection-end-line="302" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -93,16 +94,13 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
-  </component>
   <component name="PhpServers">
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="128" />
-    <option name="y" value="-18" />
+    <option name="x" value="-96" />
+    <option name="y" value="98" />
     <option name="width" value="1397" />
     <option name="height" value="1047" />
   </component>
@@ -169,12 +167,12 @@
       <updated>1519492451478</updated>
       <workItem from="1519492452791" duration="1603000" />
       <workItem from="1519494133883" duration="499000" />
-      <workItem from="1519496840060" duration="1868000" />
+      <workItem from="1519496840060" duration="2525000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3970000" />
+    <option name="totallyTimeSpent" value="4627000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -300,8 +298,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="304" column="9" lean-forward="true" selection-start-line="304" selection-start-column="9" selection-end-line="304" selection-end-column="9" />
+        <state relative-caret-position="846">
+          <caret line="302" column="47" lean-forward="true" selection-start-line="302" selection-start-column="47" selection-end-line="302" selection-end-column="47" />
           <folding />
         </state>
       </provider>
