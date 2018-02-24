@@ -231,6 +231,7 @@ client.on("message", message => {
 		cmds.push(`\`${process.env.PREFIX}music play\` - Начать воспроизведение треков.`);
 		cmds.push(`\`${process.env.PREFIX}music pause\` - Поставить трек на паузу.`);
 		cmds.push(`\`${process.env.PREFIX}music resume\` - Продолжить воспроизведение трека.`);
+		cmds.push(`\`${process.env.PREFIX}music skip\` - Пропустить трек.`);
 		var all_pages = Math.ceil(cmds.length/5);
 
 		var page = parseInt(args[0]);
