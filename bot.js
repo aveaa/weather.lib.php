@@ -165,7 +165,7 @@ client.on("message", message => {
 	  .setThumbnail("https://cdn.discordapp.com/attachments/332255338805854208/411963427972579328/neon231.png")
 	  .setTimestamp();
 	  message.author.send({embed});
-	} else if ((command === "скажи" || command === "say") && (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))) {
+	} else if ((command === "скажи" || command === "say" || command === "s") && (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))) {
     const sayMessage = args.join(" ");
     message.delete().catch(O_o=>{}); 
     message.channel.send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
@@ -282,8 +282,19 @@ client.on("message", message => {
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+skip ${message.channel.id}`)
 			}
-		} else if (new_command === "ans") {
-
+		} else if (new_command === "" || new_command === "control") {
+            if (music_channels.indexOf(message.member.voiceChannelID) === -1) {
+                message.channel.send('Эй! Ты не в канале бота!');
+            } else {
+                const embed = new Discord.RichEmbed()
+                    .setTitle(`Пульт управления • Ðжон DJ ${music_channels.indexOf(message.member.voiceChannelID)}`)
+                    .setDescription(`Сейчас играет: ничего`);
+                if (music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] !== '') {
+                    message.guild.messages.get(music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)]).delete();
+                    music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = '';
+                }
+                message.channel.send({embed}).then(message => {music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = message.id});
+            }
 		}
 	} else if (command === "юзеринфо" || command === "userinfo") {
 		let member = message.mentions.members.first();
