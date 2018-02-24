@@ -6,6 +6,7 @@ const log_channels = ['414479694453407744', '414506590889312280', '4155245080914
 const black_list = [''];
 const music_channels = ['', '415577705636167694', '415578104724193300', '415578300505915393', '415578533511823370', '415578661023121408'];
 const jvbot_channel = '415524508091416576';
+let music_bot_messages = ['', '', '', '', '', ''];
 
 
 function declOfNum(number, titles) {  
@@ -171,11 +172,9 @@ client.on("message", message => {
 	  .setTimestamp()
 	  message.author.send({embed});
 	} else if ((command === "скажи" || command === "say") && (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))) {
-	const ayy = client.emojis.get('416820141775650816');
     const sayMessage = args.join(" ");
     message.delete().catch(O_o=>{}); 
-    // .catch(O_o=>{message.reply('ты ебобо?');});
-    message.channel.send(`${ayy} hmm`);
+    message.channel.send(sayMessage).catch(O_o=>{message.reply('ты ебобо?');});
   	} else if (command === "очистить" || command == "clear" || command == "del") {
   		if(!message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
@@ -278,7 +277,7 @@ client.on("message", message => {
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+skip ${message.channel.id}`)
 			}
-		} else if (new_command == "ans" && message.author.bot) {
+		} else if (new_command == "ans") {
 
 		}
 	} else if (command === "юзеринфо" || command === "userinfo") {
