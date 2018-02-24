@@ -236,7 +236,7 @@ client.on("message", message => {
 		var page = parseInt(args[0]);
 		if (parseInt(args[0]) > all_pages || parseInt(args[0]) < 1 || args.length == 0) page = 1;
 		var cmds_list = cmds.slice(1+((page-1)*5), 6+((page-1)*5));
-		if (all_pages > page) cmds_list.push(`Для просмотра следующей страницы напишите \`${process.env.PREFIX}${command} ${page+1}\``)
+		if (all_pages > page) cmds_list.push(`\n\`\`\`diff\n-Для просмотра следующей страницы напишите ${process.env.PREFIX}${command} ${page+1}\`\`\``)
 		const embed = new Discord.RichEmbed()
 		.setTitle(`Помощь пользователя ${message.author.tag}`)
 		.setFooter(`Страница ${page}/${all_pages}`)
