@@ -175,7 +175,7 @@ client.on("message", message => {
     const sayMessage = args.join(" ");
     message.delete().catch(O_o=>{}); 
     // .catch(O_o=>{message.reply('ты ебобо?');});
-    message.channel.send(ayy);
+    message.channel.send(`${ayy} hmm`);
   	} else if (command === "очистить" || command == "clear" || command == "del") {
   		if(!message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
