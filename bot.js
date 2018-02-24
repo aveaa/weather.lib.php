@@ -171,7 +171,7 @@ client.on("message", message => {
 	  .setTimestamp()
 	  message.author.send({embed});
 	} else if ((command === "скажи" || command === "say") && (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))) {
-	const ayy = client.emojis.get('416814407276953600');
+	const ayy = client.emojis.get('416820141775650816');
     const sayMessage = args.join(" ");
     message.delete().catch(O_o=>{}); 
     // .catch(O_o=>{message.reply('ты ебобо?');});
