@@ -227,6 +227,10 @@ client.on("message", message => {
 
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
+		cmds.push(`\`${process.env.PREFIX}music add [ссылка на видео]\` - добавить трек в очередь.`);
+		cmds.push(`\`${process.env.PREFIX}music play\` - Начать воспроизведение треков.`);
+		cmds.push(`\`${process.env.PREFIX}music pause\` - Поставить трек на паузу.`);
+		cmds.push(`\`${process.env.PREFIX}music resume\` - Продолжить воспроизведение трека.`);
 		var all_pages = Math.ceil(cmds.length/5);
 
 		var page = parseInt(args[0]);
