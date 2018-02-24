@@ -293,7 +293,7 @@ client.on("message", message => {
                     message.guild.messages.get(music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)]).delete();
                     music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = '';
                 }
-                message.channel.send({embed}).then(message => {music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = message.id});
+                message.channel.send({embed}).then(msg => {music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = msg.id});
             }
 
 		} else if (new_command === "test") {
