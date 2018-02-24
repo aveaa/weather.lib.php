@@ -270,19 +270,19 @@ client.on("message", message => {
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+play ${message.channel.id}`)
 			}
-		} else if (new_command == "pause" || new_command == "пауза") {
+		} else if ((new_command == "pause" || new_command == "пауза") && message.member.roles.has('416468571196227584')) {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+pause ${message.channel.id}`)
 			}
-		} else if (new_command == "resume" || new_command == "дальше") {
+		} else if ((new_command == "resume" || new_command == "дальше") && message.member.roles.has('416468571196227584')) {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+pause ${message.channel.id}`)
 			}
-		} else if (new_command == "skip" || new_command == "пропустить") {
+		} else if ((new_command == "skip" || new_command == "пропустить") && message.member.roles.has('416468571196227584')) {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
