@@ -227,11 +227,12 @@ client.on("message", message => {
 
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
-		cmds.push(`\`${process.env.PREFIX}music add [ссылка на видео]\` - добавить трек в очередь.`);
-		cmds.push(`\`${process.env.PREFIX}music play\` - Начать воспроизведение треков.`);
-		cmds.push(`\`${process.env.PREFIX}music pause\` - Поставить трек на паузу.`);
-		cmds.push(`\`${process.env.PREFIX}music resume\` - Продолжить воспроизведение трека.`);
-		cmds.push(`\`${process.env.PREFIX}music skip\` - Пропустить трек.`);
+		cmds.push(`\n**Команды для управления музыкой**`);
+		cmds.push(`\`${process.env.PREFIX}музыка добавить [ссылка на видео]\` - добавить трек в очередь.`);
+		cmds.push(`\`${process.env.PREFIX}музыка играть\` - Начать воспроизведение треков.`);
+		cmds.push(`\`${process.env.PREFIX}музыка пауза\` - Поставить трек на паузу.`);
+		cmds.push(`\`${process.env.PREFIX}музыка дальше\` - Продолжить воспроизведение трека.`);
+		cmds.push(`\`${process.env.PREFIX}музыка пропустить\` - Пропустить трек.`);
 		var all_pages = Math.ceil(cmds.length/5);
 
 		var page = parseInt(args[0]);
@@ -255,28 +256,34 @@ client.on("message", message => {
 		message.delete();
 	} else if (command == "greet") {
 		client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(args.join(" "));embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
-	} else if (command == "music") {
+	} else if (command == "music" || command == "музыка") {
 		let new_args = args;
 		let new_command = args.shift();
-		if (new_command == "add") {
+		if (new_command == "add" || new_command == "добавить") {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+add ${message.channel.id} ${new_args.join(' ')}`)
 			}
-		} else if (new_command == "play") {
+		} else if (new_command == "play" || new_command == "играй" || new_command == "играть" || new_command == "воспроизвести") {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+play ${message.channel.id}`)
 			}
-		} else if (new_command == "pause") {
+		} else if (new_command == "pause" || new_command == "пауза") {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+pause ${message.channel.id}`)
 			}
-		} else if (new_command == "skip") {
+		} else if (new_command == "resume" || new_command == "дальше") {
+			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
+				message.channel.send('Эй! Ты не в канале бота!');
+			} else {
+				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+pause ${message.channel.id}`)
+			}
+		} else if (new_command == "skip" || new_command == "пропустить") {
 			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
