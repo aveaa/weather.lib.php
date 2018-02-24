@@ -173,7 +173,7 @@ client.on("message", message => {
 	} else if ((command === "скажи" || command === "say") && (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))) {
     const sayMessage = args.join(" ");
     message.delete().catch(O_o=>{}); 
-    message.channel.send(sayMessage).then(message=>{message.react('<:shuffle:416814407276953600>')}).catch(O_o=>{message.reply('ты ебобо?');});
+    message.channel.send(sayMessage).then(message=>{message.react('416814407276953600')}).catch(O_o=>{message.reply('ты ебобо?');});
   	} else if (command === "очистить" || command == "clear" || command == "del") {
   		if(!message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
