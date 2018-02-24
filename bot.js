@@ -27,6 +27,13 @@ function getRandomInt(min, max) {
 // 	client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(message.embeds[0].title);embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
 // }, 10000); 
 
+client.on("messageReactionAdd", (reaction, user) => {
+    if (music_channels.indexOf(reaction.message.guild.users.get(user.id).voiceChannelID) !== -1 && music_bot_messages.includes(reaction.message.id) && !user.bot) {
+        if (reaction.emoji.name === '✅') {
+            console.log('ok');
+        }
+    }
+});
 
 client.on("messageDelete", message => {
 	if (message.channel.name === undefined) return;
