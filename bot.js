@@ -295,7 +295,14 @@ client.on("message", message => {
                 }
                 message.channel.send({embed}).then(message => {music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = message.id});
             }
-		}
+
+		} else if (new_command === "test") {
+		    console.log(music_bot_messages[1]);
+            console.log(music_bot_messages[2]);
+            console.log(music_bot_messages[3]);
+            console.log(music_bot_messages[4]);
+            console.log(music_bot_messages[5]);
+        }
 	} else if (command === "юзеринфо" || command === "userinfo") {
 		let member = message.mentions.members.first();
 		if (!member) 
