@@ -290,12 +290,12 @@ client.on("message", message => {
                 const embed = new Discord.RichEmbed()
                     .setTitle(`Пульт управления • Ðжон DJ ${music_channels.indexOf(message.member.voiceChannelID)}`)
                     .setDescription(`Сейчас играет: ничего`);
-                if (music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] !== '' || music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] !== '') {
+                if (music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] !== '' && music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] !== '') {
                     client.channels.get(music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)]).fetchMessage(music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)]).then(msg1=>{msg1.delete();});
                     music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = '';
                     music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = '';
                 }
-                message.channel.send({embed}).then(msg => {music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = msg.id;music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = msg.channels.id;});
+                message.channel.send({embed}).then(msg => {music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = msg.id;music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = msg.channel.id;});
             }
 
 		} else if (new_command === "test") {
