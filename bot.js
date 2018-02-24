@@ -28,7 +28,7 @@ function getRandomInt(min, max) {
 // }, 10000); 
 
 client.on("messageReactionAdd", (reaction, user) => {
-    if (music_channels.indexOf(reaction.message.guild.users.get(user.id).voiceChannelID) !== -1 && music_bot_messages.includes(reaction.message.id) && !user.bot) {
+    if (music_channels.indexOf(reaction.message.guild.members.get(user.id).voiceChannelID) !== -1 && music_bot_messages.includes(reaction.message.id) && !user.bot) {
         if (reaction.emoji.name === '✅') {
             console.log('ok');
         }
