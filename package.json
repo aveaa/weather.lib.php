@@ -1,13 +1,13 @@
 {
-  "name": "JVBot",
-  "description": "discord.bot",
-  "version": "0.5 ALPHA",
+  "name": "JonedVoiceBot",
+  "description": "Bot for Dicord JonedVoice server",
+  "version": "1.7.1",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
   },
   "dependencies": {
-    "discord.js": "11.1.0",
+    "discord.js": "11.3.0",
     "request": "2.81.0"
   }
 }

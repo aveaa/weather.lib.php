@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = import('discord.js');
 const client = new Discord.Client();
 const rule = {music_dj:"416468571196227584", st_admin: "371003132983115777", ml_admin: "371003796454899712", st_moder: "394505884266528788", ml_moder: "371003753781788684", creator: "406442606273363990"};
 const creators = ['207821802431315968', '168255014282854401'];
@@ -8,22 +8,13 @@ const music_channels = ['', '415577705636167694', '415578104724193300', '4155783
 const jvbot_channel = '415524508091416576';
 let music_bot_messages = ['', '', '', '', '', ''];
 
+/** @namespace process.env.PREFIX */
+/** @namespace process.env.BOT_TOKEN */
+
 
 function declOfNum(number, titles) {  
-    cases = [2, 0, 1, 1, 1, 2];  
+    let cases = [2, 0, 1, 1, 1, 2];
     return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];  
-}
-
-function objDump(object) {
-    var out = "";
-    if(object && typeof(object) == "object"){
-        for (var i in object) {
-            out += i + ": " + object[i] + "\n";
-        }
-    } else {
-        out = object;
-    }
-        return out;
 }
 
 function getRandomInt(min, max) {
@@ -37,7 +28,7 @@ function getRandomInt(min, max) {
 
 
 client.on("messageDelete", message => {
-	if (message.channel.name == undefined) return;
+	if (message.channel.name === undefined) return;
 	if (log_channels.includes(message.channel.id)) return;
 	let nick = message.author.username;
 	if (message.member.nickname != null) nick = message.member.nickname;
@@ -57,11 +48,12 @@ client.on("messageDelete", message => {
 			embed.setImage(message.embeds[0].image.url);
 		if (message.embeds[0].thumbnail)
 			embed.setThumbnail(message.embeds[0].thumbnail.url);
-		if (message.embeds[0].footer)
-			embed.setFooter(message.embeds[0].footer.text, message.embeds[0].footer.iconURL)
+        /** @namespace message.embeds[0].footer.iconURL */
+        if (message.embeds[0].footer)
+			embed.setFooter(message.embeds[0].footer.text, message.embeds[0].footer.iconURL);
 		if (message.embeds[0].author)
 			embed.setAuthor(message.embeds[0].author.name, message.embeds[0].author.iconURL, message.embeds[0].author.url);
-		for (i=0;i!=message.embeds[0].fields.length;i++) {
+		for (let i=0;i!==message.embeds[0].fields.length;i++) {
 			embed.addField(message.embeds[0].fields[i].name, message.embeds[0].fields[i].value, message.embeds[0].fields[i].inline);
 		}
 		params = {embed: embed}
@@ -71,12 +63,12 @@ client.on("messageDelete", message => {
 
 client.on('ready', () => {
 	console.log('Bot loaded');
-	client.user.setPresence({ game: { name: `по сторонам`, type: 3 } });
-})
+	client.user.setPresence({ game: { name: `по сторонам`, type: 3 } }).catch();
+});
 
 
 client.on("messageUpdate", (old_message, new_message) => {
-	if (old_message.channel.name == undefined) return;
+	if (old_message.channel.name === undefined) return;
 	if (log_channels.includes(old_message.channel.id)) return;
 	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
 	let nick = old_message.author.username;
@@ -99,11 +91,12 @@ client.on("messageUpdate", (old_message, new_message) => {
 			old_embed.setImage(old_message.embeds[0].image.url);
 		if (old_message.embeds[0].thumbnail)
 			old_embed.setThumbnail(old_message.embeds[0].thumbnail.url);
-		if (old_message.embeds[0].footer)
-			old_embed.setFooter(old_message.embeds[0].footer.text, old_message.embeds[0].footer.iconURL)
+        /** @namespace old_message.embeds[0].footer.iconURL */
+        if (old_message.embeds[0].footer)
+			old_embed.setFooter(old_message.embeds[0].footer.text, old_message.embeds[0].footer.iconURL);
 		if (old_message.embeds[0].author)
 			old_embed.setAuthor(old_message.embeds[0].author.name, old_message.embeds[0].author.iconURL, old_message.embeds[0].author.url);
-		for (i=0;i!=old_message.embeds[0].fields.length;i++) {
+		for (let i=0;i!==old_message.embeds[0].fields.length;i++) {
 			old_embed.addField(old_message.embeds[0].fields[i].name, old_message.embeds[0].fields[i].value, old_message.embeds[0].fields[i].inline);
 		}
 		old_params = {embed: old_embed}
@@ -123,17 +116,18 @@ client.on("messageUpdate", (old_message, new_message) => {
 			new_embed.setImage(new_message.embeds[0].image.url);
 		if (new_message.embeds[0].thumbnail)
 			new_embed.setThumbnail(new_message.embeds[0].thumbnail.url);
-		if (new_message.embeds[0].footer)
-			new_embed.setFooter(new_message.embeds[0].footer.text, new_message.embeds[0].footer.iconURL)
+        /** @namespace new_message.embeds[0].footer.iconURL */
+        if (new_message.embeds[0].footer)
+			new_embed.setFooter(new_message.embeds[0].footer.text, new_message.embeds[0].footer.iconURL);
 		if (new_message.embeds[0].author)
 			new_embed.setAuthor(new_message.embeds[0].author.name, new_message.embeds[0].author.iconURL, new_message.embeds[0].author.url);
-		for (i=0;i!=new_message.embeds[0].fields.length;i++) {
+		for (let i=0;i!==new_message.embeds[0].fields.length;i++) {
 			new_embed.addField(new_message.embeds[0].fields[i].name, new_message.embeds[0].fields[i].value, new_message.embeds[0].fields[i].inline);
 		}
 		new_params = {embed: new_embed}
 	}
 	old_message.guild.channels.get('414506590889312280').send(`\`${nick} изменил сообщение:\``);old_message.guild.channels.get('414506590889312280').send(`\`${rand}\` ***Было:***\n${old_message.content}`, old_params);old_message.guild.channels.get('414506590889312280').send(`\`${rand}\` ***Стало:***\n${new_message.content}`, new_params);
-})
+});
 
 // client.on("messageBulkDelete")
 
@@ -145,37 +139,37 @@ client.on("guildMemberAdd", member => {
   .setDescription("\nПриветсвуем тебя,наш новый участник!\nНадеемся, что тебе у нас понравится.\n\nТы попал на сервер __#JonedVoice__\nСервер, где находят друзей, играют с ними, да и просто проводят свободное время.\n\nДля того чтобы ты не запутался, администрация составила список каналов, которые ты должен обязательно\nпосетить, ибо там находится полезная информация для новичков, вроде тебя.\nИ так, перечень важных каналов:\n\nКанал **#info** - в основном предназначен для новичков сервера. Здесь находятся все ответы на твои вопросы,связаные с нашим сервером.\n\nВ разделе **#News** - ты можешь прочитать информацию об обновлениях нашего сервера и посмотреть на приятные плюшки.\n\nЕсли ты хочешь проверить свою удачу, то тебе в канал **#Contestchannel** - здесь ты можешь поучаствовать в конкурсе на внутрисерверную валюту и не только.\n\nТекстовый канал **#Chatik** - предназначен для общения между игроками.\n\nДругой текстовый канал, именуемый **#commands** - используется для команд ботов, которые присуствуют на сервере.\n\n**#fapchannel** - канал для клубнички.")
   .setFooter("JonedVoice")
   .setThumbnail("https://cdn.discordapp.com/attachments/332255338805854208/411963427972579328/neon231.png")
-  .setTimestamp()
+  .setTimestamp();
   member.send({embed});
 });
 client.on("message", message => {
-	if (message.channel.id == '409054265626329105') {
+	if (message.channel.id === '409054265626329105') {
 		if (!black_list.includes(message.author.id))
-      	message.react("✅");
-      	message.react("❌");
+      	message.react("✅").catch(err => {console.log(err)});
+      	message.react("❌").catch(err => {console.log(err)});
 	}
 
 	if(message.author.bot) return;
-	if(message.content.indexOf(process.env.PREFIX) !== 0) return;
+    if(message.content.indexOf(process.env.PREFIX) !== 0) return;
 
 	const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
   	const command = args.shift().toLowerCase();
 
 
-	if (command == 'тест_приветствия') {
+	if (command === 'тест_приветствия') {
 	  const embed = new Discord.RichEmbed()
 	  .setTitle('Добро пожаловать')
 	  .setColor("#ee83ac")
 	  .setDescription("\nПриветсвуем тебя,наш новый участник!\nНадеемся, что тебе у нас понравится.\n\nТы попал на сервер __#JonedVoice__\nСервер, где находят друзей, играют с ними, да и просто проводят свободное время.\n\nДля того чтобы ты не запутался, администрация составила список каналов, которые ты должен обязательно\nпосетить, ибо там находится полезная информация для новичков, вроде тебя.\nИ так, перечень важных каналов:\n\nКанал **#info** - в основном предназначен для новичков сервера. Здесь находятся все ответы на твои вопросы,связаные с нашим сервером.\n\nВ разделе **#News** - ты можешь прочитать информацию об обновлениях нашего сервера и посмотреть на приятные плюшки.\n\nЕсли ты хочешь проверить свою удачу, то тебе в канал **#Contestchannel** - здесь ты можешь поучаствовать в конкурсе на внутрисерверную валюту и не только.\n\nТекстовый канал **#Chatik** - предназначен для общения между игроками.\n\nДругой текстовый канал, именуемый **#commands** - используется для команд ботов, которые присуствуют на сервере.\n\n**#fapchannel** - канал для клубнички.")
 	  .setFooter("JonedVoice")
 	  .setThumbnail("https://cdn.discordapp.com/attachments/332255338805854208/411963427972579328/neon231.png")
-	  .setTimestamp()
+	  .setTimestamp();
 	  message.author.send({embed});
 	} else if ((command === "скажи" || command === "say") && (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))) {
     const sayMessage = args.join(" ");
     message.delete().catch(O_o=>{}); 
-    message.channel.send(sayMessage).catch(O_o=>{message.reply('ты ебобо?');});
-  	} else if (command === "очистить" || command == "clear" || command == "del") {
+    message.channel.send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
+  	} else if (command === "очистить" || command === "clear" || command === "del" || command === "clr") {
   		if(!message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
 		let content = message.content.slice(process.env.PREFIX.length + 8);
@@ -196,7 +190,7 @@ client.on("message", message => {
 			  	},
 			}});
 		}
-	} else if (command === "аватарка" || command === "avatar" || command == "av" || command === "ав") {
+	} else if (command === "аватарка" || command === "avatar" || command === "av" || command === "ав") {
 		let member = message.mentions.members.first();
 		if (!member) 
 		return message.author.send({embed: {
@@ -214,10 +208,10 @@ client.on("message", message => {
 		.setColor(parseInt(getRandomInt(0,16777214)));
 		message.channel.send({embed});
 		message.delete();
-	} else if (command == "помощь" || command == "помошь" || command == "помощ" || command == "помош" || command == "помоги" || command == "памаги" || command == "помаги" || command == "хэлп" || command == "хелп" || command == "help") {
+	} else if (command === "помощь" || command === "помошь" || command === "помощ" || command === "помош" || command === "помоги" || command === "памаги" || command === "помаги" || command === "хэлп" || command === "хелп" || command === "help") {
 		
 		
-		var limit = 5
+		let limit = 5;
 		let cmds = [''];
 		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
 			cmds.push(`\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.`);
@@ -232,12 +226,12 @@ client.on("message", message => {
 		cmds.push(`\`${process.env.PREFIX}музыка пауза\` - Поставить трек на паузу.`);
 		cmds.push(`\`${process.env.PREFIX}музыка дальше\` - Продолжить воспроизведение трека.`);
 		cmds.push(`\`${process.env.PREFIX}музыка пропустить\` - Пропустить трек.`);
-		var all_pages = Math.ceil(cmds.length/5);
+		let all_pages = Math.ceil(cmds.length/limit);
 
-		var page = parseInt(args[0]);
-		if (parseInt(args[0]) > all_pages || parseInt(args[0]) < 1 || args.length == 0) page = 1;
-		var cmds_list = cmds.slice(1+((page-1)*5), 6+((page-1)*5));
-		if (all_pages > page) cmds_list.push(`\n**Для просмотра следующей страницы напишите \`${process.env.PREFIX}${command} ${page+1}\`**`)
+		let page = parseInt(args[0]);
+		if (parseInt(args[0]) > all_pages || parseInt(args[0]) < 1 || args.length === 0) page = 1;
+		let cmds_list = cmds.slice(1+((page-1)*limit), 6+((page-1)*limit));
+		if (all_pages > page) cmds_list.push(`\n**Для просмотра следующей страницы напишите \`${process.env.PREFIX}${command} ${page+1}\`**`);
 		const embed = new Discord.RichEmbed()
 		.setTitle(`Помощь пользователя ${message.author.tag}`)
 		.setFooter(`Страница ${page}/${all_pages}`)
@@ -246,49 +240,49 @@ client.on("message", message => {
 		message.channel.send({embed});
 		message.delete();
 
-	} else if (command=='roles' || command == 'роли') {
+	} else if (command==='roles' || command === 'роли') {
 		const embed = new Discord.RichEmbed()
 		.setTitle('Роли выдают::arrow_forward:️St.Admin:sparkles::christmas_tree: :arrow_forward:️Admin:sparkles: :arrow_forward:️St.Moder:christmas_tree:')
 		.setColor('#00ff00')
 		.setDescription('Что-бы получить роли :arrow_forward:️Youtubers | :arrow_forward:️Streamer:snowflake:, у вас должно быть 500 подписчиков на YouTube, либо у вас должно быть хотябы 4 стрима на Twitch\n\n #Nether:fire: - 1 Уровень\n #Demon:skull: - 5 Уровень\n :knife:(Кинжал) - 5 Уровень + Доступ к    Демонической Цитадели.\n #Archdemon:imp: - 10 Уровень\n #Lucifer:stars: - 15 Уровень\n #Devillish:japanese_ogre: - 20 Уровень\n\n   НА ЭТОМ МИР ПАДШИХ И ДЬЯВОЛОВ ЗАКАНЧИВАЕТСЯ...\n  #Soul:ghost: - 25 Уровень\n  :key:(Ключ) - 25 Уровень + Доступ в Мир.\n\n   ДАЛЬШЕ ИДУТ ГЛУБОКИЕ, БЕЛЫЕ НЕБЕСА...\n  #Heavenly:star2: - 30 Уровень\n  :crystal_ball: (Хрустальный Шар) - 30 Уровень +    Доступ в Небесный Центурион...\n  #Angel:angel: - 35 Уровень\n  #Archangel:four_leaf_clover: - 40 Уровень\n  #Divine:fleur_de_lis:️ - 45 Уровень + Доступ ко всем комнатам.');
 		message.reply({embed});
 		message.delete();
-	} else if (command == "greet") {
+	} else if (command === "greet") {
 		client.guilds.get('370998450285707275').channels.get('415524508091416576').fetchMessage('415526023543914507').then(message => {const embed = new Discord.RichEmbed().setFooter('JonedVoice').setTitle(args.join(" "));embed.setDescription(`Кол-во участников: \`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\`/\`${message.guild.memberCount}\``);message.edit({embed})});
-	} else if (command == "music" || command == "музыка") {
+	} else if (command === "music" || command === "музыка") {
 		let new_args = args;
 		let new_command = args.shift();
-		if (new_command == "add" || new_command == "добавить") {
-			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
+		if (new_command === "add" || new_command === "добавить") {
+			if (music_channels.indexOf(message.member.voiceChannelID) === -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+add ${message.channel.id} ${new_args.join(' ')}`)
 			}
-		} else if (new_command == "play" || new_command == "играй" || new_command == "играть" || new_command == "воспроизвести") {
-			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
+		} else if (new_command === "play" || new_command === "играй" || new_command === "играть" || new_command === "воспроизвести") {
+			if (music_channels.indexOf(message.member.voiceChannelID) === -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+play ${message.channel.id}`)
 			}
-		} else if ((new_command == "pause" || new_command == "пауза") && message.member.roles.has('416468571196227584')) {
-			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
+		} else if ((new_command === "pause" || new_command === "пауза") && message.member.roles.has('416468571196227584')) {
+			if (music_channels.indexOf(message.member.voiceChannelID) === -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+pause ${message.channel.id}`)
 			}
-		} else if ((new_command == "resume" || new_command == "дальше") && message.member.roles.has('416468571196227584')) {
-			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
+		} else if ((new_command === "resume" || new_command === "дальше") && message.member.roles.has('416468571196227584')) {
+			if (music_channels.indexOf(message.member.voiceChannelID) === -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+pause ${message.channel.id}`)
 			}
-		} else if ((new_command == "skip" || new_command == "пропустить") && message.member.roles.has('416468571196227584')) {
-			if (music_channels.indexOf(message.member.voiceChannelID) == -1) {
+		} else if ((new_command === "skip" || new_command === "пропустить") && message.member.roles.has('416468571196227584')) {
+			if (music_channels.indexOf(message.member.voiceChannelID) === -1) {
 				message.channel.send('Эй! Ты не в канале бота!');
 			} else {
 				client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+skip ${message.channel.id}`)
 			}
-		} else if (new_command == "ans") {
+		} else if (new_command === "ans") {
 
 		}
 	} else if (command === "юзеринфо" || command === "userinfo") {
@@ -308,7 +302,7 @@ client.on("message", message => {
 		.setThumbnail(member.user.avatarURL)
 		.setTitle(member.user.tag, member.user.avatarURL);
 		message.channel.send({embed});
-	} else if (command == "remote_say") {
+	} else if (command === "remote_say" || command === "rs") {
 		if(!message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)) && !creators.includes(message.author.id))
   			return message.reply("Извините, ебобобам слово не давали!");
 		if (message.channel.id = undefined) return message.author.send('Ты ебобо?');
@@ -316,7 +310,7 @@ client.on("message", message => {
 		const chat = new_args.shift();
 	 	const sayMessage = new_args.join(" ");
 	 	console.log(chat);
-	    message.guild.channels.get(chat).send(sayMessage).catch(O_o=>{message.reply('ты ебобо?');});
+	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
 	} else {
 		message.reply({embed: {
@@ -330,4 +324,4 @@ client.on("message", message => {
 	}
 });
 
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN).catch(err => {console.log(err)});
