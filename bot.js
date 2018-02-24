@@ -227,7 +227,6 @@ client.on("message", message => {
 
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
-		cmds.push(`\n**Команды для управления музыкой**`);
 		cmds.push(`\`${process.env.PREFIX}музыка добавить [ссылка на видео]\` - добавить трек в очередь.`);
 		cmds.push(`\`${process.env.PREFIX}музыка играть\` - Начать воспроизведение треков.`);
 		cmds.push(`\`${process.env.PREFIX}музыка пауза\` - Поставить трек на паузу.`);
