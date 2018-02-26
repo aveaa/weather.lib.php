@@ -36,6 +36,7 @@ client.on("messageReactionAdd", (reaction, user) => {
 });
 
 client.on("messageDelete", message => {
+    if (message.author.bot) return;
 	if (message.channel.name === undefined) return;
 	if (log_channels.includes(message.channel.id)) return;
 	let nick = message.author.username;
@@ -76,6 +77,7 @@ client.on('ready', () => {
 
 
 client.on("messageUpdate", (old_message, new_message) => {
+    if (old_message.author.bot) return;
 	if (old_message.channel.name === undefined) return;
 	if (log_channels.includes(old_message.channel.id)) return;
 	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
@@ -296,13 +298,16 @@ client.on("message", message => {
             } else {
                 const embed = new Discord.RichEmbed()
                     .setTitle(`Пульт управления • Ðжон DJ ${music_channels.indexOf(message.member.voiceChannelID)}`)
-                    .setDescription(`Сейчас играет: ничего`);
+                    .setDescription(`Сейчас играет: `);
                 if (music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] !== '' && music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] !== '') {
                     client.channels.get(music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)]).fetchMessage(music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)]).then(msg1=>{msg1.delete();});
                     music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = '';
                     music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = '';
                 }
-                message.channel.send({embed}).then(msg => {music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = msg.id;music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = msg.channel.id;});
+                message.channel.send({embed}).then(msg => {
+                	music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = msg.id;
+                	music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = msg.channel.id;
+                });
             }
 
 		} else if (new_command === "test") {
