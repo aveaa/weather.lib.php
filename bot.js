@@ -252,9 +252,26 @@ client.on("message", message => {
 
 	} else if (command==='roles' || command === 'роли') {
 		const embed = new Discord.RichEmbed()
-		.setTitle('Роли выдают::arrow_forward:️St.Admin:sparkles::christmas_tree: :arrow_forward:️Admin:sparkles: :arrow_forward:️St.Moder:christmas_tree:')
+		.setTitle('Роли выдают: 🅰️ Jr.Admins | 🎩 St.Moderators | 👍 St.Admins')
 		.setColor('#00ff00')
-		.setDescription('Что-бы получить роли :arrow_forward:️Youtubers | :arrow_forward:️Streamer:snowflake:, у вас должно быть 500 подписчиков на YouTube, либо у вас должно быть хотябы 4 стрима на Twitch\n\n #Nether:fire: - 1 Уровень\n #Demon:skull: - 5 Уровень\n :knife:(Кинжал) - 5 Уровень + Доступ к    Демонической Цитадели.\n #Archdemon:imp: - 10 Уровень\n #Lucifer:stars: - 15 Уровень\n #Devillish:japanese_ogre: - 20 Уровень\n\n   НА ЭТОМ МИР ПАДШИХ И ДЬЯВОЛОВ ЗАКАНЧИВАЕТСЯ...\n  #Soul:ghost: - 25 Уровень\n  :key:(Ключ) - 25 Уровень + Доступ в Мир.\n\n   ДАЛЬШЕ ИДУТ ГЛУБОКИЕ, БЕЛЫЕ НЕБЕСА...\n  #Heavenly:star2: - 30 Уровень\n  :crystal_ball: (Хрустальный Шар) - 30 Уровень +    Доступ в Небесный Центурион...\n  #Angel:angel: - 35 Уровень\n  #Archangel:four_leaf_clover: - 40 Уровень\n  #Divine:fleur_de_lis:️ - 45 Уровень + Доступ ко всем комнатам.');
+		.setDescription('  Что-бы получить роли 🎬 Youtubers | 📹 Streamers, у вас должно быть 500 подписчиков на YouTube, либо у вас должно быть хотябы 4 стрима на Twitch\n' +
+            '\n' +
+            ' 🔥 Nether - 1 Уровень\n' +
+            ' 💀 Demon - 5 Уровень\n' +
+            ' 🔪Come with us.. - 5 Уровень\n' +
+            ' 👿 Archdemon - 10 Уровень\n' +
+            ' 🌠 Lucifer - 15 Уровень\n' +
+            ' 👹 Infernal Demon - 20 Уровень\n' +
+            '\n' +
+            '  👻 Soul - 25 Уровень\n' +
+            '  🔑 Key into the World - 25 Уровень\n' +
+            '\n' +
+            '  🌟 Heavenly - 30 Уровень\n' +
+            '  🔮 Crystal Key - 30 Уровень\n' +
+            '\n' +
+            '  👼 Angel - 35 Уровень\n' +
+            '  🍀 Arcangel - 40 Уровень\n' +
+            '  ⚜️ Divine - 45 Уровень');
 		message.reply({embed});
 		message.delete();
 	} else if (command === "greet") {
