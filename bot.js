@@ -466,7 +466,7 @@ client.on("message", message => {
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
 	} else {
-        command.replace(/`/g , "\\`");
+        command.replace(/`/g , "\'");
 		message.reply({embed: {
 			color: 16711680,
 			title: "Ошибка",
