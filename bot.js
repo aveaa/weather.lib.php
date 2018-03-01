@@ -469,7 +469,7 @@ client.on("message", message => {
 		message.reply({embed: {
 			color: 16711680,
 			title: "Ошибка",
-			description: `ЭЭЭЭ! Команды \`${command.replace(/`/g , "\'");}\` нету! Алло, ты шо, ебобо?`,
+			description: `ЭЭЭЭ! Команды \`${command.replace(/`/g , "\'")}\` нету! Алло, ты шо, ебобо?`,
 			footer: {
 			  	text: "JonedVoice",
 		  	},
