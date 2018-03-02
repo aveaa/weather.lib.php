@@ -178,9 +178,11 @@ client.on("guildMemberAdd", member => {
 });
 client.on("message", async message => {
 	if (message.channel.id === '409054265626329105' && message.webhookID) {
-        message.react(client.emojis.get(emojis.za));
-        message.react(client.emojis.get(emojis.neznayu));
-        message.react(client.emojis.get(emojis.protiv));
+        message.react(client.emojis.get(emojis.za)).then(() => {
+            message.react(client.emojis.get(emojis.neznayu)).then(() => {
+                message.react(client.emojis.get(emojis.protiv)).catch(console.error);
+            });
+        });
 	}
 
 	if(message.author.bot) return;
@@ -497,9 +499,10 @@ client.on("message", async message => {
         let nick = message.author.username;
         if (message.member.nickname != null) nick = message.member.nickname;
 	    client.fetchWebhook('419112278802300928', '1PPqsAESKdIvOXAoKr3BVyaCp0zXN4CKV7JQs8pq1VUTkJIRO9Zf9xxl0M8erpBAvPBH').then(webhook => {
-	        let msg = webhook.send('', {username: nick, avatarURL: message.author.avatarURL, embeds: [embed]}).catch(err => {console.log(err)});
-
+	        webhook.send('', {username: nick, avatarURL: message.author.avatarURL, embeds: [embed]}).catch(err => {console.log(err)});
         }).catch(err => {console.log(err)});
+	    message.channel.send('🗳 Голосование успешно начато');
+	    message.delete();
     } else {
 		message.reply({embed: {
 			color: 16711680,
