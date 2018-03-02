@@ -51,11 +51,11 @@ client.on("messageReactionAdd", (reaction, user) => {
 
 client.on("presenceUpdate", (old_user, new_user) => {
     if (!old_user.roles.some(r=>['394521558283976705'].includes(r.id))) return;
-    if (!new_user.presence.game) return console.log(old_user.user.tag + ' not_a_game');
+    if (!new_user.presence.game) return;
     if (old_user.presence.game) {
-        if (old_user.presence.game.streaming) return console.log(old_user.user.tag + ' already streaming');
+        if (old_user.presence.game.streaming) return;
     }
-    if (!new_user.presence.game.streaming) return console.log(old_user.user.tag + ' not streaming');
+    if (!new_user.presence.game.streaming) return;
     client.channels.get('370999995031224320').send(`Хей, ребят! ${old_user.user} начал стрим! Заходим! ${new_user.presence.game.url}`);
 });
 
