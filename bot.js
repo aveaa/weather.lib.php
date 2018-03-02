@@ -177,11 +177,11 @@ client.on("guildMemberAdd", member => {
   member.send({embed});
 });
 client.on("message", async message => {
-	if (message.channel.id === '409054265626329105') {
-		if (!black_list.includes(message.author.id))
-      	message.react("✅").catch(err => {console.log(err)});
-      	message.react("❌").catch(err => {console.log(err)});
-	}
+	// if (message.channel.id === '409054265626329105') {
+	// 	if (!black_list.includes(message.author.id))
+     //  	message.react("✅").catch(err => {console.log(err)});
+     //  	message.react("❌").catch(err => {console.log(err)});
+	// }
 
 	if(message.author.bot) return;
     if(message.content.indexOf(process.env.PREFIX) !== 0) return;
