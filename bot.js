@@ -6,7 +6,7 @@ const log_channels = ['414479694453407744', '414506590889312280', '4155245080914
 const black_list = [''];
 const music_channels = ['', '415577705636167694', '415578104724193300', '415578300505915393', '415578533511823370', '415578661023121408'];
 const jvbot_channel = '415524508091416576';
-const music_emojis = {play: client.emojis.get('418748635765800961'), pause: client.emojis.get('418748635329855489'), stop: client.emojis.get('418748635820326912')};
+const emojis = {up:'418748638081318912', stop:'418748635820326912', shuffle:'418748638173462528', repeat1:'418748637531865089', repeat:'418748637649174535', play:'418748635765800961', pause:'418748635329855489', ok:'418748637502504972', forward:'418748554899881994', down:'418748613733122058', back:'418748554014752770', ABCD:'418748554518069249', abcd:'418748553985261568', abc:'418748552802598927',};
 let music_bot_messages = ['', '', '', '', '', ''];
 let music_bot_channels = ['', '', '', '', '', ''];
 
@@ -26,7 +26,7 @@ function getRandomInt(min, max) {
 async function multipleReact(message, array) {
     if (!message.id) return;
     array.forEach(function(item, i, arr) {
-        message.react(item);
+        message.react(client.emojis.get(item));
     });
 }
 
@@ -436,9 +436,7 @@ client.on("message", async message => {
                 message.channel.send({embed}).then(msg => {
                 	music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = msg.id;
                 	music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = msg.channel.id;
-                	msg.react(client.emojis.get('418748635765800961'));
-                    msg.react(music_emojis.pause);
-                    msg.react(music_emojis.stop);
+                	multipleReact(msg, [emojis.back, emojis.play, emojis.stop, emojis.forward]).catch(err => {console.log(err)});
                 });
             }
 
