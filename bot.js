@@ -177,11 +177,11 @@ client.on("guildMemberAdd", member => {
   member.send({embed});
 });
 client.on("message", async message => {
-	// if (message.channel.id === '409054265626329105') {
-	// 	if (!black_list.includes(message.author.id))
-     //  	message.react("✅").catch(err => {console.log(err)});
-     //  	message.react("❌").catch(err => {console.log(err)});
-	// }
+	if (message.channel.id === '409054265626329105' && message.webhookID) {
+        message.react(client.emojis.get(emojis.za));
+        message.react(client.emojis.get(emojis.neznayu));
+        message.react(client.emojis.get(emojis.protiv));
+	}
 
 	if(message.author.bot) return;
     if(message.content.indexOf(process.env.PREFIX) !== 0) return;
@@ -498,9 +498,6 @@ client.on("message", async message => {
         if (message.member.nickname != null) nick = message.member.nickname;
 	    client.fetchWebhook('419112278802300928', '1PPqsAESKdIvOXAoKr3BVyaCp0zXN4CKV7JQs8pq1VUTkJIRO9Zf9xxl0M8erpBAvPBH').then(webhook => {
 	        let msg = webhook.send('', {username: nick, avatarURL: message.author.avatarURL, embeds: [embed]}).catch(err => {console.log(err)});
-	        msg.react(client.emojis.get(emojis.za));
-	        msg.react(client.emojis.get(emojis.neznayu));
-	        msg.react(client.emojis.get(emojis.protiv));
 
         }).catch(err => {console.log(err)});
     } else {
