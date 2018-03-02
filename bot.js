@@ -491,8 +491,8 @@ client.on("message", async message => {
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
 	} else if (command === "test_webhook" && creators.includes(message.member.id)) {
-        let nick = old_message.author.username;
-        if (old_message.member.nickname != null) nick = old_message.member.nickname;
+        let nick = message.author.username;
+        if (message.member.nickname != null) nick = message.member.nickname;
 	    client.fetchWebhook('419112278802300928', '1PPqsAESKdIvOXAoKr3BVyaCp0zXN4CKV7JQs8pq1VUTkJIRO9Zf9xxl0M8erpBAvPBH').then(webhook => {
 	        webhook.send('Test', {username: nick, avatarURL: message.user.avatarURL}).catch(err => {console.log(err)});
         }).catch(err => {console.log(err)});
