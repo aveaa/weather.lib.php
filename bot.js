@@ -497,8 +497,12 @@ client.on("message", async message => {
         let nick = message.author.username;
         if (message.member.nickname != null) nick = message.member.nickname;
 	    client.fetchWebhook('419112278802300928', '1PPqsAESKdIvOXAoKr3BVyaCp0zXN4CKV7JQs8pq1VUTkJIRO9Zf9xxl0M8erpBAvPBH').then(webhook => {
-	        webhook.send('', {username: nick, avatarURL: message.author.avatarURL, embeds: [embed]}).then(msg => {
-	            msg.react(client.emojis.get(emojis.za)).then((reaction) => {reaction.message.react(client.emojis.get(emojis.neznayu)).then((reaction1) => {reaction1.message.react(client.emojis.get(emojis.protiv)).catch(err => {console.log(err)})}).catch(err => {console.log(err)});}).catch(err => {console.log(err)})
+	        webhook.send('', {username: nick, avatarURL: message.author.avatarURL, embeds: [embed]}).then((msg) => {
+	            msg.react(client.emojis.get(emojis.za)).then((reaction) => {
+	                reaction.message.react(client.emojis.get(emojis.neznayu)).then((reaction1) => {
+	                    reaction1.message.react(client.emojis.get(emojis.protiv)).catch(err => {console.log(err)});
+	                }).catch(err => {console.log(err)});
+	            }).catch(err => {console.log(err)});
             }).catch(err => {console.log(err)});
 
         }).catch(err => {console.log(err)});
