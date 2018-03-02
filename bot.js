@@ -25,13 +25,9 @@ function getRandomInt(min, max) {
 
 async function multipleReact(message, array) {
     if (!message.id) return;
-    let interval = setInterval(() => {
-        if (array !== []) {
-            message.react(array.shift());
-        } else {
-            clearInterval(interval);
-        }
-    }, 10);
+    array.forEach(function(item, i, arr) {
+        message.react(item);
+    });
 }
 
 
@@ -440,7 +436,9 @@ client.on("message", async message => {
                 message.channel.send({embed}).then(msg => {
                 	music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = msg.id;
                 	music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = msg.channel.id;
-                	multipleReact(msg, [music_emojis.play, music_emojis.pause, music_emojis.stop]).catch(err => {console.log(err)});
+                	msg.react(music_emojis.play);
+                    msg.react(music_emojis.pause);
+                    msg.react(music_emojis.stop);
                 });
             }
 
