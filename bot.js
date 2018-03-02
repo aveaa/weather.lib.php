@@ -490,7 +490,7 @@ client.on("message", async message => {
 	 	console.log(chat);
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
-	} else if (command === "test_webhook" && creators.includes(message.member.id)) {
+	} else if (command === "test_vote" && creators.includes(message.member.id)) {
 	    let embed = Discord.RichEmbed()
             .setDescription(args.join(' '))
             .addField('Автор', message.author);
