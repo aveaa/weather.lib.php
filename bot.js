@@ -23,16 +23,23 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-async function multipleReact(message, array) {
-    if (!message.id) return;
-    array.forEach(function(item, i, arr) {
-        setInterval(() => {
-            message.react(client.emojis.get(item)).catch(err => {
-                console.log(err)
-            });
-        }, 15*i)
-    });
+async function multipleReact(message, arr) {
+    if (arr !== []) {
+        await message.react(arr.shift()).catch(console.error);
+        multipleReact(message,arr).catch(console.error);
+    }
 }
+
+// async function multipleReact(message, array) {
+//     if (!message.id) return;
+//     array.forEach(function(item, i, arr) {
+//         setInterval(() => {
+//             message.react(client.emojis.get(item)).catch(err => {
+//                 console.log(err)
+//             });
+//         }, 15*i)
+//     });
+// }
 
 
 // let interval = setInterval (function () {
@@ -465,6 +472,8 @@ client.on("message", async message => {
             console.log(music_bot_messages[3]);
             console.log(music_bot_messages[4]);
             console.log(music_bot_messages[5]);
+
+
         }
 	} else if (command === "юзеринфо" || command === "userinfo") {
 		let member = message.mentions.members.first();
