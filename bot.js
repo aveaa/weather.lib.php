@@ -50,7 +50,7 @@ client.on("messageReactionAdd", (reaction, user) => {
 });
 
 client.on("presenceUpdate", (old_user, new_user) => {
-    if (old_user.game && new_user.game && !old_user.presence.game.streaming && new_user.presence.game.streaming && new_user.roles.has('394521558283976705')) {
+    if (old_user.presence.game && new_user.presence.game && !old_user.presence.game.streaming && new_user.presence.game.streaming && new_user.roles.has('394521558283976705')) {
         client.channels.get('370999995031224320').send(`Хей, ребята! ${old_user.user} начал стрим! Заходите! ${old_user.presence.game.url}`);
     }
 });
