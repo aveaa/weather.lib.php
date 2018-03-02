@@ -494,7 +494,7 @@ client.on("message", async message => {
         let nick = message.author.username;
         if (message.member.nickname != null) nick = message.member.nickname;
 	    client.fetchWebhook('419112278802300928', '1PPqsAESKdIvOXAoKr3BVyaCp0zXN4CKV7JQs8pq1VUTkJIRO9Zf9xxl0M8erpBAvPBH').then(webhook => {
-	        webhook.send('Test', {username: nick, avatarURL: message.user.avatarURL}).catch(err => {console.log(err)});
+	        webhook.send('Test', {username: nick, avatarURL: message.author.avatarURL}).catch(err => {console.log(err)});
         }).catch(err => {console.log(err)});
     } else {
 		message.reply({embed: {
