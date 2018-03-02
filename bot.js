@@ -486,7 +486,7 @@ client.on("message", async message => {
 	 	console.log(chat);
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
-	} else if (command === 'all_roles' && creators.includes(message.user.id)) {
+	} else if (command === 'all_roles' && creators.includes(message.member.id)) {
 	    console.log(JSON.stringify(message.guild.roles));
     } else {
 		message.reply({embed: {
