@@ -164,7 +164,7 @@ client.on("guildMemberAdd", member => {
   .setTimestamp();
   member.send({embed});
 });
-client.on("message", message => {
+client.on("message", async message => {
 	if (message.channel.id === '409054265626329105') {
 		if (!black_list.includes(message.author.id))
       	message.react("✅").catch(err => {console.log(err)});
