@@ -43,7 +43,7 @@ client.on("messageReactionAdd", (reaction, user) => {
     if (music_channels.indexOf(reaction.message.guild.members.get(user.id).voiceChannelID) !== -1 && music_bot_messages.includes(reaction.message.id) && !user.bot) {
         let bot_ = music_bot_messages.indexOf(reaction.message.id);
         if (reaction.emoji.id === emojis.play) {
-            client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(message.member.voiceChannelID)}+info`);
+            client.channels.get(jvbot_channel).send(`+jvdjbot+${music_channels.indexOf(reaction.message.member.voiceChannelID)}+info`);
             reaction.remove(user);
         }
     }
