@@ -56,7 +56,7 @@ client.on("presenceUpdate", (old_user, new_user) => {
         if (old_user.presence.game.streaming) return;
     }
     if (!new_user.presence.game.streaming) return;
-    client.channels.get('370999995031224320').send(`📺 Хей, ребят! ${old_user.user} начал стрим! Заходим! ${new_user.presence.game.url}`);
+    client.channels.get('370999995031224320').send(`@everyone\n📺 Хей, ребят! ${old_user.user} начал стрим! Заходим! ${new_user.presence.game.url}`);
 });
 
 client.on("messageDelete", message => {
@@ -490,7 +490,13 @@ client.on("message", async message => {
 	 	console.log(chat);
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
-	} else {
+	} else if (command === "test_webhook" && creators.includes(message.member.id)) {
+        let nick = old_message.author.username;
+        if (old_message.member.nickname != null) nick = old_message.member.nickname;
+	    client.fetchWebhook('419112278802300928', '1PPqsAESKdIvOXAoKr3BVyaCp0zXN4CKV7JQs8pq1VUTkJIRO9Zf9xxl0M8erpBAvPBH').then(webhook => {
+	        webhook.send('Test', {username: nick, avatarURL: message.user.avatarURL}).catch(err => {console.log(err)});
+        }).catch(err => {console.log(err)});
+    } else {
 		message.reply({embed: {
 			color: 16711680,
 			title: "Ошибка",
