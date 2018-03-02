@@ -51,7 +51,7 @@ client.on("messageReactionAdd", (reaction, user) => {
 
 client.on("presenceUpdate", (old_user, new_user) => {
     if (old_user.roles.some(r=>['394521558283976705'].includes(r.id))) return;
-    if (new_user.presence.game === undefined) return console.log(old_user.user.tag + ' not_a_game');
+    if (!new_user.presence.game) return console.log(old_user.user.tag + ' not_a_game');
     if (old_user.presence.game) {
         if (old_user.presence.game.streaming) return console.log(old_user.user.tag + ' already streaming');
     }
