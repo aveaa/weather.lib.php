@@ -6,7 +6,7 @@ const log_channels = ['414479694453407744', '414506590889312280', '4155245080914
 const black_list = [''];
 const music_channels = ['', '415577705636167694', '415578104724193300', '415578300505915393', '415578533511823370', '415578661023121408'];
 const jvbot_channel = '415524508091416576';
-const emojis = {up:'418748638081318912', stop:'418748635820326912', shuffle:'418748638173462528', repeat1:'418748637531865089', repeat:'418748637649174535', play:'418748635765800961', pause:'418748635329855489', ok:'418748637502504972', forward:'418748554899881994', down:'418748613733122058', back:'418748554014752770', ABCD:'418748554518069249', abcd:'418748553985261568', abc:'418748552802598927',};
+const emojis = {up:'418748638081318912', stop:'418748635820326912', shuffle:'418748638173462528', repeat1:'418748637531865089', repeat:'418748637649174535', play:'418748635765800961', pause:'418748635329855489', ok:'418748637502504972', forward:'418748554899881994', down:'418748613733122058', back:'418748554014752770', ABCD:'418748554518069249', abcd:'418748553985261568', abc:'418748552802598927', protiv:'419121914959626240', neznayu:'419121999277719562', za:'419122029854457866'};
 let music_bot_messages = ['', '', '', '', '', ''];
 let music_bot_channels = ['', '', '', '', '', ''];
 
@@ -497,7 +497,10 @@ client.on("message", async message => {
         let nick = message.author.username;
         if (message.member.nickname != null) nick = message.member.nickname;
 	    client.fetchWebhook('419112278802300928', '1PPqsAESKdIvOXAoKr3BVyaCp0zXN4CKV7JQs8pq1VUTkJIRO9Zf9xxl0M8erpBAvPBH').then(webhook => {
-	        webhook.send('', {username: nick, avatarURL: message.author.avatarURL, embeds: [embed]}).catch(err => {console.log(err)});
+	        webhook.send('', {username: nick, avatarURL: message.author.avatarURL, embeds: [embed]}).then(msg => {
+	            msg.react(client.emojis.get(emojis.za)).then(() => {msg.react(client.emojis.get(emojis.neznayu)).then(() => {msg.react(client.emojis.get(emojis.protiv)).catch(err => {console.log(err)})}).catch(err => {console.log(err)});}).catch(err => {console.log(err)})
+            }).catch(err => {console.log(err)});
+
         }).catch(err => {console.log(err)});
     } else {
 		message.reply({embed: {
