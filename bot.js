@@ -49,6 +49,12 @@ client.on("messageReactionAdd", (reaction, user) => {
     }
 });
 
+// client.on("presenceUpdate", (old_user, new_user) => {
+//     if (!old_user.presence.game.streaming && new_user.presence.game.streaming && new_user.roles.has()) {
+//
+//     }
+// });
+
 client.on("messageDelete", message => {
     if (message.author.bot) return;
 	if (message.channel.name === undefined) return;
@@ -480,7 +486,9 @@ client.on("message", async message => {
 	 	console.log(chat);
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
-	} else {
+	} else if (command === 'all_roles' && creators.includes(message.user.id)) {
+	    console.log(JSON.stringify(message.guild.roles));
+    } else {
 		message.reply({embed: {
 			color: 16711680,
 			title: "Ошибка",
