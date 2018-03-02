@@ -487,7 +487,9 @@ client.on("message", async message => {
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
 	} else if (command === 'all_roles' && creators.includes(message.member.id)) {
-	    console.log(JSON.stringify(message.guild.roles));
+	    message.guild.roles.forEach( function (i) {
+            console.log(`${i.id} ${i.name}`);
+        });
     } else {
 		message.reply({embed: {
 			color: 16711680,
