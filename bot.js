@@ -507,7 +507,7 @@ client.on("message", async message => {
     } else if (command === 'vote_info' && creators.includes(message.author.id)) {
 	    const embed = new Discord.RichEmbed()
             .setTitle('Голосования')
-            .setDescription(`В данном чате отображаются все голосования участников данного сервера.\n Для того, чтобы создать голосование, напишите \`${process.env.PREFIX}идея [описание идеи]\``)
+            .setDescription(`В данном чате отображаются все голосования участников данного сервера.\nДля того, чтобы создать голосование, напишите:\n\`${process.env.PREFIX}идея [описание идеи]\``)
             .setFooter('JonedVoice')
             .setThumbnail('https://cdn.discordapp.com/attachments/416813030702055425/419145842268831744/icons8--64.png');
 	    message.channel.send({embed})
