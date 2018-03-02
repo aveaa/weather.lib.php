@@ -491,10 +491,13 @@ client.on("message", async message => {
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
 	} else if (command === "test_webhook" && creators.includes(message.member.id)) {
+	    let embed = Discord.RichEmbed()
+            .setDescription(args.join(' '))
+            .addField('Автор', message.author);
         let nick = message.author.username;
         if (message.member.nickname != null) nick = message.member.nickname;
 	    client.fetchWebhook('419112278802300928', '1PPqsAESKdIvOXAoKr3BVyaCp0zXN4CKV7JQs8pq1VUTkJIRO9Zf9xxl0M8erpBAvPBH').then(webhook => {
-	        webhook.send('Test', {username: nick, avatarURL: message.author.avatarURL}).catch(err => {console.log(err)});
+	        webhook.send('', {username: nick, avatarURL: message.author.avatarURL, embeds: [embed]}).catch(err => {console.log(err)});
         }).catch(err => {console.log(err)});
     } else {
 		message.reply({embed: {
