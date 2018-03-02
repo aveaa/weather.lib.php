@@ -28,7 +28,7 @@ async function multipleReact(message, array) {
     array.forEach(function(item, i, arr) {
         setTimeout(() => {
             message.react(client.emojis.get(item));
-        }, 5*i);
+        }, 10*i);
     });
 }
 
@@ -41,7 +41,7 @@ client.on("messageReactionAdd", (reaction, user) => {
     if (music_channels.indexOf(reaction.message.guild.members.get(user.id).voiceChannelID) !== -1 && music_bot_messages.includes(reaction.message.id) && !user.bot) {
         if (reaction.emoji.id === emojis.play) {
             console.log('ok');
-            reaction.remove();
+            reaction.remove(user);
         }
     }
 });
