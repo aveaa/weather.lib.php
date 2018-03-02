@@ -491,7 +491,7 @@ client.on("message", async message => {
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
 	} else if (command === "test_vote" && creators.includes(message.member.id)) {
-	    let embed = Discord.RichEmbed()
+	    let embed = new Discord.RichEmbed()
             .setDescription(args.join(' '))
             .addField('Автор', message.author);
         let nick = message.author.username;
