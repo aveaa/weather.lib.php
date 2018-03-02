@@ -50,9 +50,11 @@ client.on("messageReactionAdd", (reaction, user) => {
 });
 
 client.on("presenceUpdate", (old_user, new_user) => {
-    if (old_user.presence.game && new_user.presence.game && !old_user.presence.game.streaming && new_user.presence.game.streaming && new_user.roles.has('394521558283976705')) {
-        client.channels.get('370999995031224320').send(`Хей, ребята! ${old_user.user} начал стрим! Заходите! ${old_user.presence.game.url}`);
-    }
+    if (old_user.roles.roles.some(r=>['394521558283976705'].includes(r.id))) return;
+    if (old_user.presence.game === undefined || new_user.presence.game === undefined) return console.log(old_user.user.tag + ' not_a_game');
+    if (old_user.presence.streaming) return console.log(old_user.user.tag + ' already streaming');
+    if (!new_user.presence.streaming) return console.log(old_user.user.tag + ' not streaming');
+    client.channels.get('370999995031224320').send(`Хей, ребят! ${old_user.user.tag} начал стрим! Заходим! ${new_user.presence.url}`);
 });
 
 client.on("messageDelete", message => {
