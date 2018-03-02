@@ -6,6 +6,7 @@ const log_channels = ['414479694453407744', '414506590889312280', '4155245080914
 const black_list = [''];
 const music_channels = ['', '415577705636167694', '415578104724193300', '415578300505915393', '415578533511823370', '415578661023121408'];
 const jvbot_channel = '415524508091416576';
+const music_emojis = {play: client.emojis.get('')};
 let music_bot_messages = ['', '', '', '', '', ''];
 let music_bot_channels = ['', '', '', '', '', ''];
 
@@ -20,6 +21,17 @@ function declOfNum(number, titles) {
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function multipleReact(message, array) {
+    if (!message.id) return;
+    let interval = setInterval(() => {
+        if (array !== []) {
+            message.react(array.shift());
+        } else {
+            clearInterval(interval);
+        }
+    }, 10);
 }
 
 
@@ -415,7 +427,7 @@ client.on("message", message => {
 			}
 		} else if (new_command === "" || new_command === "control") {
             if (music_channels.indexOf(message.member.voiceChannelID) === -1) {
-                message.channel.send('Эй! Ты не в канале бота!');
+                let msg = message.channel.send('Эй! Ты не в канале бота!');
             } else {
                 const embed = new Discord.RichEmbed()
                     .setTitle(`Пульт управления • Ðжон DJ ${music_channels.indexOf(message.member.voiceChannelID)}`)
@@ -428,6 +440,7 @@ client.on("message", message => {
                 message.channel.send({embed}).then(msg => {
                 	music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = msg.id;
                 	music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = msg.channel.id;
+                	multipleReact(msg, ['🇦', '🇧', '🇨']);
                 });
             }
 
