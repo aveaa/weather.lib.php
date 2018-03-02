@@ -25,9 +25,9 @@ function getRandomInt(min, max) {
 
 async function multipleReact(message, array) {
     if (!message.id) return;
-    array.forEach(function(item, i, arr) {
-        setTimeout(() => {
-            message.react(client.emojis.get(item));
+    await array.forEach(async function(item, i, arr) {
+        await setTimeout(async () => {
+            let reaction = await message.react(client.emojis.get(item));
         }, 10*i);
     });
 }
