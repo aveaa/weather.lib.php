@@ -436,7 +436,7 @@ client.on("message", async message => {
                 message.channel.send({embed}).then(msg => {
                 	music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = msg.id;
                 	music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] = msg.channel.id;
-                	msg.react(music_emojis.play);
+                	msg.react(client.emojis.get('418748635765800961'));
                     msg.react(music_emojis.pause);
                     msg.react(music_emojis.stop);
                 });
