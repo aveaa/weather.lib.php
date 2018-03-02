@@ -56,7 +56,7 @@ client.on("presenceUpdate", (old_user, new_user) => {
         if (old_user.presence.game.streaming) return;
     }
     if (!new_user.presence.game.streaming) return;
-    client.channels.get('370999995031224320').send(`Хей, ребят! ${old_user.user} начал стрим! Заходим! ${new_user.presence.game.url}`);
+    client.channels.get('370999995031224320').send(`📺 Хей, ребят! ${old_user.user} начал стрим! Заходим! ${new_user.presence.game.url}`);
 });
 
 client.on("messageDelete", message => {
