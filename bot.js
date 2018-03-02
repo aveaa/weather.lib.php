@@ -177,7 +177,7 @@ client.on("guildMemberAdd", member => {
   member.send({embed});
 });
 client.on("message", async message => {
-	if (message.channel.id === '409054265626329105' && message.webhookID) {
+	if (message.channel.id === '419141527810605058' && message.webhookID) {
         message.react(client.emojis.get(emojis.za)).then(() => {
             message.react(client.emojis.get(emojis.neznayu)).then(() => {
                 message.react(client.emojis.get(emojis.protiv)).catch(console.error);
@@ -256,6 +256,7 @@ client.on("message", async message => {
 			cmds.push(`\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.`);
 
 		cmds.push(`\`${process.env.PREFIX}аватарка [упоминание человека]\` - украсть аватарку.`);
+        cmds.push(`\`${process.env.PREFIX}идея [описание идеи]\` - создание голосования.`);
         cmds.push(`\`${process.env.PREFIX}инфо\` - информация.`);
 		cmds.push(`\`${process.env.PREFIX}роли\` - информация о ролях.`);
         cmds.push(`\`${process.env.PREFIX}войс\` - информация о голосовых каналах.`);
@@ -492,17 +493,24 @@ client.on("message", async message => {
 	 	console.log(chat);
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
-	} else if (command === "test_vote" && creators.includes(message.member.id)) {
+	} else if (command === "vote" || command === "votes" || command === "idea" || command === "голосование" || command === "голос" || command === "идея" || command === "голоса" ) {
 	    let embed = new Discord.RichEmbed()
             .setDescription(args.join(' '))
             .addField('Автор', message.author);
         let nick = message.author.username;
         if (message.member.nickname != null) nick = message.member.nickname;
-	    client.fetchWebhook('419112278802300928', '1PPqsAESKdIvOXAoKr3BVyaCp0zXN4CKV7JQs8pq1VUTkJIRO9Zf9xxl0M8erpBAvPBH').then(webhook => {
+	    client.fetchWebhook('419141757968842752', 'IG2PgzRN7dNiPyu4DLsV62ViPEBeEYqhdCNQet56sm1q0O_ETJ_7w8ZjidwTJmJfzdyT').then(webhook => {
 	        webhook.send('', {username: nick, avatarURL: message.author.avatarURL, embeds: [embed]}).catch(err => {console.log(err)});
         }).catch(err => {console.log(err)});
-	    message.channel.send('🗳 Голосование успешно начато');
+	    message.channel.send(`🗳 Голосование пользователя ${message.author} успешно начато`);
 	    message.delete();
+    } else if (command === 'vote_info' && creators.includes(message.author.id)) {
+	    const embed = Discord.RichEmbed()
+            .setTitle('Голосования')
+            .setDescription(`В данном чате отображаются все голосования участников данного сервера.\n Для того, чтобы создать голосование, напишите \`${process.env.PREFIX}идея [описание идеи]\``)
+            .setFooter('JonedVoice')
+            .setThumbnail('https://cdn.discordapp.com/attachments/416813030702055425/419145842268831744/icons8--64.png');
+	    message.channel.send({embed})
     } else {
 		message.reply({embed: {
 			color: 16711680,
