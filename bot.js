@@ -49,11 +49,11 @@ client.on("messageReactionAdd", (reaction, user) => {
     }
 });
 
-// client.on("presenceUpdate", (old_user, new_user) => {
-//     if (!old_user.presence.game.streaming && new_user.presence.game.streaming && new_user.roles.has()) {
-//
-//     }
-// });
+client.on("presenceUpdate", (old_user, new_user) => {
+    if (!old_user.presence.game.streaming && new_user.presence.game.streaming && new_user.roles.has('394521558283976705 ')) {
+        client.channels.get('370999995031224320').send(`Хей, ребята! ${old_user.user} начал стрим! Заходите! ${old_user.presence.url}`);
+    }
+});
 
 client.on("messageDelete", message => {
     if (message.author.bot) return;
@@ -486,11 +486,7 @@ client.on("message", async message => {
 	 	console.log(chat);
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
-	} else if (command === 'all_roles' && creators.includes(message.member.id)) {
-	    message.guild.roles.forEach( function (i) {
-            console.log(`${i.id} ${i.name}`);
-        });
-    } else {
+	} else {
 		message.reply({embed: {
 			color: 16711680,
 			title: "Ошибка",
