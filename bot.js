@@ -185,11 +185,7 @@ client.on("guildMemberAdd", member => {
 });
 client.on("message", async message => {
 	if (message.channel.id === '419141527810605058' && message.webhookID) {
-        message.react(client.emojis.get(emojis.za)).then(() => {
-            message.react(client.emojis.get(emojis.neznayu)).then(() => {
-                message.react(client.emojis.get(emojis.protiv)).catch(console.error);
-            });
-        });
+        multipleReact(message, [client.emojis.get(emojis.za), client.emojis.get(emojis.neznayu), client.emojis.get(emojis.protiv)]).catch(console.error);
 	}
 
 	if(message.author.bot) return;
@@ -502,7 +498,7 @@ client.on("message", async message => {
 	 	console.log(chat);
 	    message.guild.channels.get(chat).send(sayMessage).catch(()=>{message.reply('ты ебобо?');});
 	    message.delete().catch(O_o=>{}); 
-	} else if (command === "vote" || command === "votes" || command === "idea" || command === "голосование" || command === "голос" || command === "идея" || command === "голоса" ) {
+	} else if (command === "vote" || command === "votes" || command === "idea" || command === "голосование" || command === "голос" || command === "идея" || command === "голоса" || command === 'poll' ) {
 	    let embed = new Discord.RichEmbed()
             .setDescription(args.join(' '))
             .addField('Автор', message.author);
@@ -520,6 +516,11 @@ client.on("message", async message => {
             .setFooter('JonedVoice')
             .setThumbnail('https://cdn.discordapp.com/attachments/416813030702055425/419145842268831744/icons8--64.png');
 	    message.channel.send({embed})
+    } else if (['удалить_идею', 'удаление_идеи', 'удалить_голосование', 'удаление_голосования', 'remove_poll', 'delete_poll', 'remove_vote', 'delete_vote', 'remove_idea', 'delete_idea'].includes(command)) {
+        if (!client.channels.get('419141527810605058').fetchMessage(args[0])) return message.reply('ошибка! Этого голосования не существует!');
+        if (client.channels.get('419141527810605058').fetchMessage(args[0]).embeds[0].fields[0].value !== `${message.author}`) return message.reply('ошибка! Это голосование - не ваше!');
+        client.channels.get('419141527810605058').fetchMessage(args[0]).delete();
+        message.delete();
     } else {
 		message.reply({embed: {
 			color: 16711680,
