@@ -538,6 +538,18 @@ client.on("message", async message => {
         ]
   }
 });
+	} else if (command === 'эмулировать' && creators.includes(message.author.id)) {
+		try {
+           var code = args.join(" ");
+           var evaled = eval(code);
+
+           if (typeof evaled !== "string")
+               evaled = require("util").inspect(evaled);
+           message.guild.channels.get('416509595180072961').send('Был эмулирован код: ' + evaled);
+           message.channel.sendCode("xl", clean(evaled));
+       } catch (err) {
+           message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+       }
 	} else {
 		message.reply({embed: {
 			color: 16711680,
