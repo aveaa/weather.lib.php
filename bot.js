@@ -469,7 +469,6 @@ client.on("message", async message => {
             console.log(music_bot_messages[4]);
             console.log(music_bot_messages[5]);
 
-
         }
 	} else if (command === "юзеринфо" || command === "userinfo") {
 		let member = message.mentions.members.first();
