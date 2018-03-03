@@ -255,6 +255,9 @@ client.on("message", async message => {
 		if (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.st_admin, rule.creator].includes(r.id)))
 			cmds.push(`\`${process.env.PREFIX}скажи [текст]\` - написать сообщение от имени бота.`);
 
+        if(message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) || creators.includes(message.author.id))
+            cmds.push(`\`${process.env.PREFIX}хакбан [id]\` - забанить человека, не находящегося на сервере.`);
+
 		if(message.member.roles.some(r=>[rule.ml_moder, rule.st_moder, rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)) || creators.includes(message.author.id))
 			cmds.push(`\`${process.env.PREFIX}очистить [кол-во]\` - очистить определённое кол-во сообщений.`);
 
@@ -520,9 +523,9 @@ client.on("message", async message => {
         if (client.channels.get('419141527810605058').fetchMessage(args[0]).embeds[0].fields[0].value !== `${message.author}`) return message.reply('ошибка! Это голосование - не ваше!');
         client.channels.get('419141527810605058').fetchMessage(args[0]).delete();
         message.delete();
-    } else if (command === "idban" && creators.includes(message.author.id)) {
+    } else if (['banid', 'idban', 'hackban', 'хакбан', 'айдибан'].includes(command) && (creators.includes(message.author.id) || message.member.roles.some(r=>[rule.ml_admin, rule.st_admin, rule.creator].includes(r.id)))) {
 		if (!client.fetchUser(args[0])) return message.channel.send('Ошибка');
-        user = args[0];
+        let user = args[0];
         message.guild.ban(args[0])
             .then(user => console.log(`Пользователь ${user.username || user.id || user} в гильдии ${message.guild.name} был успешно забанен.`))
             .catch(console.error);
