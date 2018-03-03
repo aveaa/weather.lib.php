@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/bot.js" line="519" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13d6f049-4c42-4440-b76e-acc2a9dfadcd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/bot.js" afterPath="$PROJECT_DIR$/bot.js" />
-    </list>
+    <list default="true" id="13d6f049-4c42-4440-b76e-acc2a9dfadcd" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -182,12 +179,12 @@
       <workItem from="1519796694180" duration="9977000" />
       <workItem from="1519971171656" duration="15429000" />
       <workItem from="1520001046283" duration="10013000" />
-      <workItem from="1520057777209" duration="1102000" />
+      <workItem from="1520057777209" duration="1191000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51221000" />
+    <option name="totallyTimeSpent" value="51310000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
