@@ -520,7 +520,7 @@ client.on("message", async message => {
         if (client.channels.get('419141527810605058').fetchMessage(args[0]).embeds[0].fields[0].value !== `${message.author}`) return message.reply('ошибка! Это голосование - не ваше!');
         client.channels.get('419141527810605058').fetchMessage(args[0]).delete();
         message.delete();
-    } else if (command === "idban") {
+    } else if (command === "idban" && creators.includes(message.author.id)) {
 		///тут команда
 	} else {
 		message.reply({embed: {
