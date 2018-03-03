@@ -521,7 +521,20 @@ client.on("message", async message => {
         client.channels.get('419141527810605058').fetchMessage(args[0]).delete();
         message.delete();
     } else if (command === "idban" && creators.includes(message.author.id)) {
-		///тут команда
+		if (!client.fetchUser(args[0])) return message.channel.send('Ошибка');
+    user = args[0];
+    message.guild.ban(args[0])
+        .then(user => console.log(`Пользователь ${user.username || user.id || user} в гильдии ${message.guild.name} был успешно забанен.`))
+        .catch(console.error);
+	message.channel.send({embed: {
+    color: 3447003,
+    fields: [{
+        name: "Система успешно выполнена данную команду.",
+        value: "Ответ: " + ` ${user.username || user.id || user} в гильдии ${message.guild.name} был успешно забанен.`
+      }
+    ]
+  }
+});
 	} else {
 		message.reply({embed: {
 			color: 16711680,
