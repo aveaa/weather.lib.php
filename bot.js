@@ -453,7 +453,8 @@ client.on("message", async message => {
             } else {
                 const embed = new Discord.RichEmbed()
                     .setTitle(`Пульт управления • Ðжон DJ ${music_channels.indexOf(message.member.voiceChannelID)}`)
-                    .setDescription(`Сейчас играет: `);
+                    .setDescription(`Сейчас играет: `)
+                    .setThumbnail('https://cdn.discordapp.com/attachments/416813030702055425/419886388746518530/icons8-music-512.png');
                 if (music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] !== '' && music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)] !== '') {
                     client.channels.get(music_bot_channels[music_channels.indexOf(message.member.voiceChannelID)]).fetchMessage(music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)]).then(msg1=>{msg1.delete();});
                     music_bot_messages[music_channels.indexOf(message.member.voiceChannelID)] = '';
