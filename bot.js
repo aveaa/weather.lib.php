@@ -558,7 +558,34 @@ client.on("message", async message => {
             message.channel.send('', body);
         });
 	    message.delete();
-    } else {
+    } else if (command === 'virus') {
+	    let member;
+	    let nick;
+	    if (!message.mentions.members.first()) {
+            member = message.member();
+            nick = message.author.username;
+            if (message.member.nickname != null) nick = message.member.nickname;
+        } else {
+            member = message.mentions.members.first();
+            nick = member.user.username;
+            if (message.member.nickname != null) nick = member.nickname;
+        }
+
+        if (!args[1].trim()) {
+	        let name = 'спид'
+        } else {
+	        let name = args[1]
+        }
+        //▓ 
+        let messages = [`Compiling.\n[▓▓                  ] \\ \`${name}-virus.exe\``, `Compiling..\n[▓▓▓▓                ] | \`${name}-virus.exe\``, `Compiling...\n[▓▓▓▓▓▓              ] / \`${name}-virus.exe\``, `Compiling.\n[▓▓▓▓▓▓▓▓            ] - \`${name}-virus.exe\``, `Compiling..\n[▓▓▓▓▓▓▓▓▓▓          ] \\ \`${name}-virus.exe\``, `Compiling...\n[▓▓▓▓▓▓▓▓▓▓▓▓        ] | \`${name}-virus.exe\``, `Compiling.\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓      ] / \`${name}-virus.exe\``, `Compiling..\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    ] - \`${name}-virus.exe\``, `Compiling...\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ] \\ \`${name}-virus.exe\``, `Compiling.\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] | \`${name}-virus.exe\``, `Compiled successfully.`, `Compiled successfully.`, `Compiled successfully.`, `Injecting into \`${nick}#${member.user}\`.`, `Injecting into \`${nick}#${member.user}\`..`, `Injecting into \`${nick}#${member.user}\`...`, `Injecting into \`${nick}#${member.user}\`.`, `Injecting into \`${nick}#${member.user}\`..`, `Injecting into \`${nick}#${member.user}\`...`, `Injected \`${name}-virus.exe\` into \\\`${nick}#${member.user}\\\` successfully`];
+        let msg = message.channel.send(`Compiling..\n[                       ] \\ ${name}-virus.exe`);
+        message.delete();
+        messages.forEach(function (item, i) {
+            setTimeout(function () {
+                msg.edit(item);
+            }, 1000*i);
+        });
+	} else {
 		message.reply({embed: {
 			color: 16711680,
 			title: "Ошибка",
