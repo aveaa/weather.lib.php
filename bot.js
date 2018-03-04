@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const util = require("util");
 const client = new Discord.Client();
 const rule = {music_dj:"416468571196227584", st_admin: "371003132983115777", ml_admin: "371003796454899712", st_moder: "394505884266528788", ml_moder: "371003753781788684", creator: "406442606273363990"};
 const creators = ['255917121014333441', '168255014282854401'];
@@ -540,17 +541,21 @@ client.on("message", async message => {
 });
 	} else if (command === 'эмулировать' && creators.includes(message.author.id)) {
 		try {
-           var code = args.join(" ");
-           var evaled = eval(code);
+           let code = args.join(" ");
+           let evaled = eval(code);
 
            if (typeof evaled !== "string")
-               evaled = require("util").inspect(evaled);
+               evaled = util.inspect(evaled);
            message.guild.channels.get('416509595180072961').send('Был эмулирован код: ' + evaled);
            message.channel.sendCode("xl", clean(evaled));
        } catch (err) {
            message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
        }
-	} else {
+	} else if (command === 'test_att' && creators.includes(message.author.id)) {
+	    const att = new Discord.Attachment('http://jonedvoice.rf.gd/level.jpg?user=263744387064791055', 'hervam');
+	    message.channel.send('', att);
+	    message.delete();
+    } else {
 		message.reply({embed: {
 			color: 16711680,
 			title: "Ошибка",
