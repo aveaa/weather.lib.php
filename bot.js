@@ -552,7 +552,7 @@ client.on("message", async message => {
            message.channel.sendMessage(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
        }
 	} else if (command === 'test_att' && creators.includes(message.author.id)) {
-	    const att = new Discord.Attachment('http://jonedvoice.rf.gd/level.jpg?user=263744387064791055', 'hervam');
+	    const att = new Discord.Attachment('http://jonedvoice.rf.gd/level.jpg?user=263744387064791055', 'hervam.jpg');
 	    message.channel.send('', att);
 	    message.delete();
     } else {
