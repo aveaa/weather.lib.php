@@ -539,7 +539,7 @@ client.on("message", async message => {
         ]
   }
 });
-	} else if (command === 'эмулировать' && creators.includes(message.author.id)) {
+	} else if (['emulate', 'terminal', 'eval', 'эмулировать', 'эвал', 'терминал'].includes(command) && creators.includes(message.author.id)) {
 		try {
            let code = args.join(" ");
            let evaled = eval(code);
