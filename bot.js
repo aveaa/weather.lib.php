@@ -571,10 +571,11 @@ client.on("message", async message => {
             if (message.member.nickname != null) nick = member.nickname;
         }
 
+        var name;
         if (!args[1].trim()) {
-	        let name = 'спид'
+	        name = 'спид'
         } else {
-	        let name = args[1]
+	        name = args[1]
         }
         //▓ 
         let messages = [`Compiling.\n[▓▓                  ] \\ \`${name}-virus.exe\``, `Compiling..\n[▓▓▓▓                ] | \`${name}-virus.exe\``, `Compiling...\n[▓▓▓▓▓▓              ] / \`${name}-virus.exe\``, `Compiling.\n[▓▓▓▓▓▓▓▓            ] - \`${name}-virus.exe\``, `Compiling..\n[▓▓▓▓▓▓▓▓▓▓          ] \\ \`${name}-virus.exe\``, `Compiling...\n[▓▓▓▓▓▓▓▓▓▓▓▓        ] | \`${name}-virus.exe\``, `Compiling.\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓      ] / \`${name}-virus.exe\``, `Compiling..\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    ] - \`${name}-virus.exe\``, `Compiling...\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ] \\ \`${name}-virus.exe\``, `Compiling.\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] | \`${name}-virus.exe\``, `Compiled successfully.`, `Compiled successfully.`, `Compiled successfully.`, `Injecting into \`${nick}#${member.user}\`.`, `Injecting into \`${nick}#${member.user}\`..`, `Injecting into \`${nick}#${member.user}\`...`, `Injecting into \`${nick}#${member.user}\`.`, `Injecting into \`${nick}#${member.user}\`..`, `Injecting into \`${nick}#${member.user}\`...`, `Injected \`${name}-virus.exe\` into \\\`${nick}#${member.user}\\\` successfully`];
