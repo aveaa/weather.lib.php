@@ -647,6 +647,8 @@ client.on("message", async message => {
                     case '`':
                         new_text += '\'';
                         break;
+                    case undefined:
+                        break;
                     default:
                         new_text += sym;
                 }
