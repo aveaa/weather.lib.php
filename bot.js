@@ -620,6 +620,9 @@ client.on("message", async message => {
                     case 'p':
                         new_text += 'ᛈ';
                         break;
+                    case 'q':
+                        new_text += 'ᛩ';
+                        break;
                     case 'r':
                         new_text += 'ᚱ';
                         break;
