@@ -31,6 +31,11 @@ async function multipleReact(message, arr) {
     }
 }
 
+String.prototype.replaceAll = function(search, replacement) {
+    let target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 // async function multipleReact(message, array) {
 //     if (!message.id) return;
 //     array.forEach(function(item, i, arr) {
@@ -558,33 +563,89 @@ client.on("message", async message => {
             message.channel.send('', body);
         });
 	    message.delete();
-    } else if (command === 'virus') {
-	    let member;
-	    let nick;
-	    if (!message.mentions.members.first()) {
-            member = message.member();
-            nick = message.author.username;
-            if (message.member.nickname != null) nick = message.member.nickname;
-        } else {
-            member = message.mentions.members.first();
-            nick = member.user.username;
-            if (message.member.nickname != null) nick = member.nickname;
-        }
-
-        var name;
-        if (!args[1].trim()) {
-	        name = 'спид'
-        } else {
-	        name = args[1]
-        }
-        //▓ 
-        let messages = [`Compiling.\n[▓▓                  ] \\ \`${name}-virus.exe\``, `Compiling..\n[▓▓▓▓                ] | \`${name}-virus.exe\``, `Compiling...\n[▓▓▓▓▓▓              ] / \`${name}-virus.exe\``, `Compiling.\n[▓▓▓▓▓▓▓▓            ] - \`${name}-virus.exe\``, `Compiling..\n[▓▓▓▓▓▓▓▓▓▓          ] \\ \`${name}-virus.exe\``, `Compiling...\n[▓▓▓▓▓▓▓▓▓▓▓▓        ] | \`${name}-virus.exe\``, `Compiling.\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓      ] / \`${name}-virus.exe\``, `Compiling..\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    ] - \`${name}-virus.exe\``, `Compiling...\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ] \\ \`${name}-virus.exe\``, `Compiling.\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] | \`${name}-virus.exe\``, `Compiled successfully.`, `Compiled successfully.`, `Compiled successfully.`, `Injecting into \`${nick}#${member.user}\`.`, `Injecting into \`${nick}#${member.user}\`..`, `Injecting into \`${nick}#${member.user}\`...`, `Injecting into \`${nick}#${member.user}\`.`, `Injecting into \`${nick}#${member.user}\`..`, `Injecting into \`${nick}#${member.user}\`...`, `Injected \`${name}-virus.exe\` into \\\`${nick}#${member.user}\\\` successfully`];
-        let msg = message.channel.send(`Compiling..\n[                       ] \\ ${name}-virus.exe`);
-        message.delete();
-        messages.forEach(function (item, i) {
-            setTimeout(function () {
-                msg.edit(item);
-            }, 1000*i);
+    } else if (command === 'ruinic') {
+        let text = args.join(" ");
+        let new_text;
+        text.toLowerCase().split('').forEach(function(sym) {
+            switch (sym) {
+                case 'a':
+                    new_text+='ᚨ';
+                    break;
+                case 'b':
+                    new_text+='ᛒ';
+                    break;
+                case 'c':
+                    new_text+='ᚲ';
+                    break;
+                case 'd':
+                    new_text+='ᛞ';
+                    break;
+                case 'e':
+                    new_text+='ᛖ';
+                    break;
+                case 'f':
+                    new_text+='ᚠ';
+                    break;
+                case 'g':
+                    new_text+='ᚷ';
+                    break;
+                case 'h':
+                    new_text+='ᚺ';
+                    break;
+                case 'i':
+                    new_text+='ᛁ';
+                    break;
+                case 'j':
+                    new_text+='ᛃ';
+                    break;
+                case 'k':
+                    new_text+='ᚴ';
+                    break;
+                case 'l':
+                    new_text+='ᛚ';
+                    break;
+                case 'm':
+                    new_text+='ᛗ';
+                    break;
+                case 'n':
+                    new_text+='ᚾ';
+                    break;
+                case 'o':
+                    new_text+='ᛟ';
+                    break;
+                case 'p':
+                    new_text+='ᛈ';
+                    break;
+                case 'r':
+                    new_text+='ᚱ';
+                    break;
+                case 's':
+                    new_text+='ᛋ';
+                    break;
+                case 't':
+                    new_text+='ᛏ';
+                    break;
+                case 'u':
+                    new_text+='ᚢ';
+                    break;
+                case 'v':
+                    new_text+='ᚡ';
+                    break;
+                case 'w':
+                    new_text+='ᚹ';
+                    break;
+                case 'x':
+                    new_text+='ᛪ';
+                    break;
+                case 'y':
+                    new_text+='ᚤ';
+                    break;
+                case 'z':
+                    new_text+='ᛉ';
+                    break;
+                default:
+                    new_text+=sym;
+            }
         });
 	} else {
 		message.reply({embed: {
