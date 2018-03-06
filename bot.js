@@ -193,7 +193,7 @@ client.on("guildMemberAdd", member => {
   member.send({embed});
 });
 client.on("message", async message => {
-    if (message.type === 'PINS_ADD') return console.log(message.content);
+    if (message.type === 'PINS_ADD') return console.log(message.mentions.members.first());
 	if (message.channel.id === '419141527810605058' && message.webhookID) {
         multipleReact(message, [client.emojis.get(emojis.za), client.emojis.get(emojis.neznayu), client.emojis.get(emojis.protiv)]).catch(console.error);
 	}
