@@ -566,7 +566,7 @@ client.on("message", async message => {
     } else if (command === 'ruinic') {
         let text = args.join(" ");
         let new_text;
-        text.toLowerCase().split('').forEach(function(sym) {
+        text.toLowerCase().forEach(function(sym) {
             if (sym !== undefined)
             switch (sym) {
                 case 'a':
