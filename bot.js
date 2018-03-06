@@ -643,10 +643,15 @@ client.on("message", async message => {
                 case 'z':
                     new_text+='ᛉ';
                     break;
+                case '`':
+                    new_text+='\'';
+                    break;
                 default:
                     new_text+=sym;
             }
         });
+        message.channel.send(`📝 Ваш текст: \`` + new_text + `\``);
+        message.delete();
 	} else {
 		message.reply({embed: {
 			color: 16711680,
