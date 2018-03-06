@@ -565,7 +565,7 @@ client.on("message", async message => {
 	    message.delete();
     } else if (command === 'ruinic') {
         let text = args.join(" ");
-        let new_text;
+        let new_text = '';
         for(let x = 0, sym=''; sym = text.charAt(x); x++) {
             if (sym !== undefined)
                 switch (sym) {
