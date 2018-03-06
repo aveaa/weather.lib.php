@@ -11,6 +11,9 @@ const emojis = {up:'418748638081318912', stop:'418748635820326912', shuffle:'418
 let music_bot_messages = ['', '', '', '', '', ''];
 let music_bot_channels = ['', '', '', '', '', ''];
 
+//invis-sym "ﾠ"
+
+
 /** @namespace process.env.PREFIX */
 /** @namespace process.env.BOT_TOKEN */
 
@@ -568,7 +571,7 @@ client.on("message", async message => {
         let new_text = '';
         for(let x = 0, sym=''; sym = text.charAt(x); x++) {
             if (sym !== undefined)
-                switch (sym) {
+                switch (sym.toLowerCase()) {
                     case 'a':
                         new_text += 'ᚨ';
                         break;
