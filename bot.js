@@ -651,7 +651,7 @@ client.on("message", async message => {
                     new_text+=sym;
             }
         });
-        const embed = Discord.RichEmbed()
+        const embed = new Discord.RichEmbed()
             .setTitle('📝 Транслитератор текста в руинический алфавит')
             .setDescription(`Оригинал: \``+ text.replace(/` /g, "\'") +`\`\nРезультат: \``+ new_text +`\`\n\nПеревод был проведён по запросу ${message.author}`);
         message.channel.send({embed});
