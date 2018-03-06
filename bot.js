@@ -567,6 +567,7 @@ client.on("message", async message => {
         let text = args.join(" ");
         let new_text;
         text.toLowerCase().split('').forEach(function(sym) {
+            if (sym !== undefined)
             switch (sym) {
                 case 'a':
                     new_text+='ᚨ';
@@ -650,7 +651,10 @@ client.on("message", async message => {
                     new_text+=sym;
             }
         });
-        message.channel.send(`📝 Ваш текст: \`` + new_text + `\``);
+        const embed = Discord.RichEmbed()
+            .setTitle('📝 Транслитератор текста в руинический алфавит')
+            .setDescription(`Оригинал: \``+ text.replace(/` /g, "\'") +`\`\nРезультат: \``+ new_text +`\`\n\nПеревод был проведён по запросу ${message.author}`);
+        message.channel.send({embed});
         message.delete();
 	} else {
 		message.reply({embed: {
