@@ -566,91 +566,91 @@ client.on("message", async message => {
     } else if (command === 'ruinic') {
         let text = args.join(" ");
         let new_text;
-        text.toLowerCase().forEach(function(sym) {
+        for(let x = 0, sym=''; sym = text.charAt(x); x++) {
             if (sym !== undefined)
-            switch (sym) {
-                case 'a':
-                    new_text+='ᚨ';
-                    break;
-                case 'b':
-                    new_text+='ᛒ';
-                    break;
-                case 'c':
-                    new_text+='ᚲ';
-                    break;
-                case 'd':
-                    new_text+='ᛞ';
-                    break;
-                case 'e':
-                    new_text+='ᛖ';
-                    break;
-                case 'f':
-                    new_text+='ᚠ';
-                    break;
-                case 'g':
-                    new_text+='ᚷ';
-                    break;
-                case 'h':
-                    new_text+='ᚺ';
-                    break;
-                case 'i':
-                    new_text+='ᛁ';
-                    break;
-                case 'j':
-                    new_text+='ᛃ';
-                    break;
-                case 'k':
-                    new_text+='ᚴ';
-                    break;
-                case 'l':
-                    new_text+='ᛚ';
-                    break;
-                case 'm':
-                    new_text+='ᛗ';
-                    break;
-                case 'n':
-                    new_text+='ᚾ';
-                    break;
-                case 'o':
-                    new_text+='ᛟ';
-                    break;
-                case 'p':
-                    new_text+='ᛈ';
-                    break;
-                case 'r':
-                    new_text+='ᚱ';
-                    break;
-                case 's':
-                    new_text+='ᛋ';
-                    break;
-                case 't':
-                    new_text+='ᛏ';
-                    break;
-                case 'u':
-                    new_text+='ᚢ';
-                    break;
-                case 'v':
-                    new_text+='ᚡ';
-                    break;
-                case 'w':
-                    new_text+='ᚹ';
-                    break;
-                case 'x':
-                    new_text+='ᛪ';
-                    break;
-                case 'y':
-                    new_text+='ᚤ';
-                    break;
-                case 'z':
-                    new_text+='ᛉ';
-                    break;
-                case '`':
-                    new_text+='\'';
-                    break;
-                default:
-                    new_text+=sym;
-            }
-        });
+                switch (sym) {
+                    case 'a':
+                        new_text += 'ᚨ';
+                        break;
+                    case 'b':
+                        new_text += 'ᛒ';
+                        break;
+                    case 'c':
+                        new_text += 'ᚲ';
+                        break;
+                    case 'd':
+                        new_text += 'ᛞ';
+                        break;
+                    case 'e':
+                        new_text += 'ᛖ';
+                        break;
+                    case 'f':
+                        new_text += 'ᚠ';
+                        break;
+                    case 'g':
+                        new_text += 'ᚷ';
+                        break;
+                    case 'h':
+                        new_text += 'ᚺ';
+                        break;
+                    case 'i':
+                        new_text += 'ᛁ';
+                        break;
+                    case 'j':
+                        new_text += 'ᛃ';
+                        break;
+                    case 'k':
+                        new_text += 'ᚴ';
+                        break;
+                    case 'l':
+                        new_text += 'ᛚ';
+                        break;
+                    case 'm':
+                        new_text += 'ᛗ';
+                        break;
+                    case 'n':
+                        new_text += 'ᚾ';
+                        break;
+                    case 'o':
+                        new_text += 'ᛟ';
+                        break;
+                    case 'p':
+                        new_text += 'ᛈ';
+                        break;
+                    case 'r':
+                        new_text += 'ᚱ';
+                        break;
+                    case 's':
+                        new_text += 'ᛋ';
+                        break;
+                    case 't':
+                        new_text += 'ᛏ';
+                        break;
+                    case 'u':
+                        new_text += 'ᚢ';
+                        break;
+                    case 'v':
+                        new_text += 'ᚡ';
+                        break;
+                    case 'w':
+                        new_text += 'ᚹ';
+                        break;
+                    case 'x':
+                        new_text += 'ᛪ';
+                        break;
+                    case 'y':
+                        new_text += 'ᚤ';
+                        break;
+                    case 'z':
+                        new_text += 'ᛉ';
+                        break;
+                    case '`':
+                        new_text += '\'';
+                        break;
+                    default:
+                        new_text += sym;
+                }
+        }
         const embed = new Discord.RichEmbed()
             .setTitle('📝 Транслитератор текста в руинический алфавит')
             .setDescription(`Оригинал: \``+ text.replace(/` /g, "\'") +`\`\nРезультат: \``+ new_text +`\`\n\nПеревод был проведён по запросу ${message.author}`);
