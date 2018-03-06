@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/bot.js" line="530" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/bot.js" line="531" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13d6f049-4c42-4440-b76e-acc2a9dfadcd" name="Default" comment="">
@@ -19,8 +19,8 @@
       <file leaf-file-name="bot.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="626" column="40" lean-forward="true" selection-start-line="626" selection-start-column="40" selection-end-line="626" selection-end-column="40" />
+            <state relative-caret-position="666">
+              <caret line="195" column="73" lean-forward="false" selection-start-line="195" selection-start-column="73" selection-end-line="195" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -183,12 +183,12 @@
       <workItem from="1519971171656" duration="15429000" />
       <workItem from="1520001046283" duration="10013000" />
       <workItem from="1520057777209" duration="1367000" />
-      <workItem from="1520339457354" duration="5603000" />
+      <workItem from="1520339457354" duration="6236000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66293000" />
+    <option name="totallyTimeSpent" value="66926000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -584,8 +584,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="626" column="40" lean-forward="true" selection-start-line="626" selection-start-column="40" selection-end-line="626" selection-end-column="40" />
+        <state relative-caret-position="666">
+          <caret line="195" column="73" lean-forward="false" selection-start-line="195" selection-start-column="73" selection-end-line="195" selection-end-column="73" />
           <folding />
         </state>
       </provider>
