@@ -198,7 +198,7 @@ client.on("message", async message => {
            let invite = client.fetchInvite(item).catch();
            if (invite && invite.guild) {message.delete(); return console.log(invite.guild.name);}
         });
-    } catch {}
+    } catch (err) {}
 	if (message.channel.id === '419141527810605058' && message.webhookID) {
         multipleReact(message, [client.emojis.get(emojis.za), client.emojis.get(emojis.neznayu), client.emojis.get(emojis.protiv)]).catch(console.error);
 	}
