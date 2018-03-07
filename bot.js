@@ -193,7 +193,7 @@ client.on("guildMemberAdd", member => {
   member.send({embed});
 });
 client.on("message", async message => {
-    message.split(/ +/g).forEach((item) => {
+    message.content.split(/ +/g).forEach((item) => {
     let invite = fetchInvite(item).catch();
     if (invite && invite.guild) return message.delete();
 });
