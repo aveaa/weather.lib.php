@@ -193,15 +193,6 @@ client.on("guildMemberAdd", member => {
   member.send({embed});
 });
 client.on("message", async message => {
-    try {
-        message.content.split(/ +/g).forEach((item) => {
-           let invite = client.fetchInvite(item).catch();
-           if (invite && invite.guild) {message.delete(); return console.log(invite.guild.name);}
-        });
-    } catch (err) {}
-	if (message.channel.id === '419141527810605058' && message.webhookID) {
-        multipleReact(message, [client.emojis.get(emojis.za), client.emojis.get(emojis.neznayu), client.emojis.get(emojis.protiv)]).catch(console.error);
-	}
 
 	if(message.author.bot) return;
     if(message.content.indexOf(process.env.PREFIX) !== 0) return;
